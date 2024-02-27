@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Person {
 
-    private Integer Id;
+    private Integer id;
     private String firstName;
     private String lastName;
     private String eMail;
@@ -13,7 +13,7 @@ public class Person {
     private String status;
 
     public Person(Integer id, String firstName, String lastName, String eMail, String courseName, String accessType, String status) {
-        Id = id;
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.eMail = eMail;
@@ -23,11 +23,11 @@ public class Person {
     }
 
     public Integer getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Integer id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -95,7 +95,7 @@ public class Person {
     @Override
     public String toString() {
         return "Person{" +
-                "Id=" + Id +
+                "Id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", eMail='" + eMail + '\'' +
