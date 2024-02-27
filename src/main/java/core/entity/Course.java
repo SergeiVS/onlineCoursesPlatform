@@ -7,7 +7,6 @@ public class Course {
     private String name;
     private boolean isActive;
     private String material;
-
     private List<String> tests;
 
     public Course(String name, boolean isActive, String material, List<String> tests) {
