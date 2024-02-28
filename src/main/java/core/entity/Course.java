@@ -20,11 +20,7 @@ public class Course {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public boolean isActive() {
+   public boolean isActive() {
         return isActive;
     }
 
