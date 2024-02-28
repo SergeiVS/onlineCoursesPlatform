@@ -10,21 +10,15 @@ public class Person {
     private String eMail;
     private String courseName;
     private String accessType;
-    private String status;
 
-    public Person(Integer id, String firstName, String lastName, String eMail, String courseName, String accessType, String status) {
+    public Person(Integer id, String firstName, String lastName, String eMail) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.eMail = eMail;
-        this.courseName = courseName;
-        this.accessType = accessType;
-        this.status = status;
     }
 
-    public Integer getId() {
-        return id;
-    }
+    public Integer getId() { return id; }
 
     public String getFirstName() {
         return firstName;
@@ -54,14 +48,6 @@ public class Person {
         this.accessType = accessType;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -85,7 +71,6 @@ public class Person {
                 ", eMail='" + eMail + '\'' +
                 ", courseName='" + courseName + '\'' +
                 ", accessType='" + accessType + '\'' +
-                ", status='" + status + '\'' +
                 '}';
     }
 }
