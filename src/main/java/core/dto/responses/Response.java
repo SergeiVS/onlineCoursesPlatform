@@ -1,4 +1,4 @@
-package core.dto;
+package core.dto.responses;
 
 import core.dto.errors.ErrorCoding;
 

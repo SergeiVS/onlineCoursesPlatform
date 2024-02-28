@@ -1,4 +1,4 @@
-package core.dto;
+package core.dto.requests;
 
 public class Request <T> {
 
