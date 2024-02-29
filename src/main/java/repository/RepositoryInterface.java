@@ -7,6 +7,5 @@ public interface RepositoryInterface <T> {
     void add(T obj);
     void update(T obj);
     List<T> findAll();
-    List<T> findByName(String name);
 
 }
