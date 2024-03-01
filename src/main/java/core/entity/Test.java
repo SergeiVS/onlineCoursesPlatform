@@ -6,12 +6,13 @@ import java.util.List;
 public class Test {
     private String name;
     private boolean isActive;
-    private List<Question> questions = new ArrayList<>();
+    private List<Question> questions;
 
     // Конструктор
     public Test(String name, boolean isActive) {
         this.name = name;
         this.isActive = isActive;
+        this.questions = new ArrayList<>();
     }
 
     // Метод добавления вопроса
