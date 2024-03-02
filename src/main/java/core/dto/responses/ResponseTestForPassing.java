@@ -67,7 +67,7 @@ public class ResponseTestForPassing {
             return "ResponseQuestion{" +
                     "questionNumber=" + questionNumber +
                     ", question='" + question + '\'' +
-                    ", anmswerA='" + anmswerA + '\'' +
+                    ", answerA='" + answerA + '\'' +
                     ", answerB='" + answerB + '\'' +
                     ", answerC='" + answerC + '\'' +
                     '}';
