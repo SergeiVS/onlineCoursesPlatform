@@ -1,7 +1,7 @@
 package core.dto.responses;
 
 import java.util.List;
-
+//используется для возврата пользователю информацию об прогрессе прохождения курса студентом его оценках.
 public class ResponsePersonProgress {
 
     private final Integer id;
