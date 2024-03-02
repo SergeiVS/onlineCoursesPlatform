@@ -5,7 +5,7 @@ import core.dto.errors.ErrorCoding;
 import java.util.List;
 
 public class Response <T> {
-
+    // Типизация определяется в конкретном сервисе
     private final T response;
     private final List<ErrorCoding> errors;
 

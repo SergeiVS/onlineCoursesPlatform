@@ -4,6 +4,7 @@ public class Request <T> {
 
     private final T request;
 
+    // Типизация определяется в конкретном сервисе
     public Request(T request) {
         this.request = request;
     }

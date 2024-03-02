@@ -1,5 +1,6 @@
 package core.dto.requests;
-
+// Используется для передачи нового маркера активности "boolean isActive" в Репозиторий "Course course"
+// курс идентифицируется по ИД
 public class activateDeactivateCourseDto {
 
     private final Integer courseId;

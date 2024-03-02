@@ -1,9 +1,7 @@
 package core.dto.requests;
-
+// используется для передачи lodIn информации для идентификации пользователя и входа в систему
 public class LogInDto {
-    /*
-    will be used for logIn data
-    */
+
     private final String eMail;
     private final Integer passwordHash;
 
