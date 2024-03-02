@@ -3,14 +3,15 @@ package core.dto.requests;
 public class NewPersonDto {
 
     /*
-    will be used for registering of new User
+   передаётся в сервис для добавления в репозиторий нового объекта Person
      */
     private final String firstName;
     private final String lastName;
     private final String eMail;
     private final Integer courseId;
     private final Integer passwordHash;
-    // passwordHash will be saved in separate repository as a value for key(emailHash)
+
+    // пароль сохраняется в отдельный репозиторий в качестве значения, где ключом является emailHash
 
 
     public NewPersonDto(String firstName, String lastName, String eMail, Integer courseId, Integer passwordHash) {
