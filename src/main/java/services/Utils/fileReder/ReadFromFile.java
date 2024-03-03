@@ -2,7 +2,7 @@ package services.Utils.fileReder;
 
 import java.io.IOException;
 
-public interface ReadFromFile<T, E> {
+public interface ReadFromFile<T> {
 
-    T readFromFile(String path, E proofValue) throws IOException;
+    T readFromFile(String path) throws IOException;
 }

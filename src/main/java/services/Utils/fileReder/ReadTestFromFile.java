@@ -12,11 +12,11 @@ import java.io.IOException;
 import java.util.Objects;
 
 // считывает из файла данные теста для проверки знаний пользователя.
-public class ReadTestFromFile implements ReadFromFile<Test, Integer> {
+public class ReadTestFromFile implements ReadFromFile<Test> {
 
     // метод возвращает готовый объект класса Test. На вход получает путь к нужному файлу и ид курса для проверки
     @Override
-    public Test readFromFile(String path, Integer courseId) throws IOException {
+    public Test readFromFile(String path) throws IOException {
 
         Test readTest = null;
         int questionsCounter = 0;
@@ -37,9 +37,6 @@ public class ReadTestFromFile implements ReadFromFile<Test, Integer> {
             if (readLine.toLowerCase().contains("course_id")) {
                 readCourseId = Integer.parseInt(readLine.split("=")[1].trim());
                 throw new NumberException();
-            }
-            if (!Objects.equals(courseId, readCourseId)) {
-                throw new WrongFileFormatException();
             }
 
             if (readLine.toLowerCase().contains("test_name")) {
