@@ -4,20 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Test {
-    private String name;
-    private boolean isActive;
-    private List<Question> questions;
+    private final String name;
+    private final boolean isActive;
+    private final List<Question> questions = new ArrayList<>();
 
     // Конструктор
     public Test(String name, boolean isActive) {
         this.name = name;
         this.isActive = isActive;
-        this.questions = new ArrayList<>();
-    }
 
-    // Метод добавления вопроса
-    public void addQuestion(Question question) {
-        questions.add(question);
     }
 
     // Геттеры
@@ -32,7 +27,7 @@ public class Test {
     public List<Question> getQuestions() {
         return questions;
     }
-
+    public void addQuestion(Question question) {questions.add(question);}
     @Override
     public String toString() {
         return "Test{" +
@@ -42,13 +37,14 @@ public class Test {
                 '}';
     }
 
-    // Внутренний класс "Question"
+
     public static class Question {
-        private String question;
-        private String answer_a;
-        private String answer_b;
-        private String answer_c;
-        private String proofValue;
+        // Метод добавления вопроса
+        private final String question;
+        private final String answer_a;
+        private final String answer_b;
+        private final String answer_c;
+        private final String proofValue;
 
         // Конструктор
         public Question(String question, String answer_a, String answer_b, String answer_c, String proofValue) {
@@ -90,9 +86,7 @@ public class Test {
                     ", proofValue='" + proofValue + '\'' +
                     '}';
         }
+
     }
-
-
-
 }
 

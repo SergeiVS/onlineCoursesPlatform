@@ -1,68 +1,74 @@
-
 number_of_questions = 10
 course_id = 1
 test_name = Test for course 1, module1.
 is_active = true
 
 ##
-question = question?
+question = question1?
 answer_a = answerA.
 answer_b = answerB.
 answer_c = answerC.
 proof_value = b
 
 ##
-question = question?
+question = question2?
 answer_a = answerA.
 answer_b = answerB.
 answer_c = answerC.
 proof_value = c;
-##
 
-question = question?
+##
+question = question3?
 answer_a = answerA.
 answer_b = answerB.
 answer_c = answerC.
 proof_value = a
+
 ##
-question = question?
+question = question4?
 answer_a = answerA.
 answer_b = answerB.
 answer_c = answerC.
 proof_value = b
+
 ##
-question = question?
+question = question5?
 answer_a = answerA.
 answer_b = answerB.
 answer_c = answerC.
 proof_value = c
+
 ##
-question = question?
+question = question6?
 answer_a = answerA.
 answer_b = answerB.
 answer_c = answerC.
 proof_value = c
+
 ##
-question = question?
+question = question7?
 answer_a = answerA.
 answer_b = answerB.
 answer_c = answerC.
 proof_value = a
+
 ##
-question = question?
+question = question8?
 answer_a = answerA.
 answer_b = answerB.
 answer_c = answerC.
 proof_value = a
+
 ##
-question = question?
+question = question9?
 answer_a = answerA.
 answer_b = answerB.
 answer_c = answerC.
 proof_value = b
+
 ##
-question = question?
+question = question10?
 answer_a = answerA.
 answer_b = answerB.
 answer_c = answerC.
-proof_value = b
+proof_value = c
