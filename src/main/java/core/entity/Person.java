@@ -8,7 +8,7 @@ public class Person {
     private String firstName;
     private String lastName;
     private String eMail;
-    private String courseName;
+    private Integer courseId;
     private String accessType;
 
     public Person(Integer id, String firstName, String lastName, String eMail) {
@@ -16,6 +16,15 @@ public class Person {
         this.firstName = firstName;
         this.lastName = lastName;
         this.eMail = eMail;
+    }
+
+    public Person(Integer id, String firstName, String lastName, String eMail, Integer courseId, String accessType) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.eMail = eMail;
+        this.courseId = courseId;
+        this.accessType = accessType;
     }
 
     public Integer getId() { return id; }
@@ -32,12 +41,12 @@ public class Person {
         return eMail;
     }
 
-    public String getCourseName() {
-        return courseName;
+    public Integer getCourseName() {
+        return courseId;
     }
 
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
+    public void setCourseName(Integer courseId) {
+        this.courseId = courseId;
     }
 
     public String getAccessType() {
@@ -69,7 +78,7 @@ public class Person {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", eMail='" + eMail + '\'' +
-                ", courseName='" + courseName + '\'' +
+                ", courseName='" + courseId + '\'' +
                 ", accessType='" + accessType + '\'' +
                 '}';
     }
