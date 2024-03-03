@@ -43,7 +43,7 @@ public class Test {
     }
 
     // Внутренний класс "Question"
-    public class Question {
+    public static class Question {
         private String question;
         private String answer_a;
         private String answer_b;
