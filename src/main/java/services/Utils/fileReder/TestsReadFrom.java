@@ -23,7 +23,7 @@ public class TestsReadFrom implements ReadFromFile<Test, Integer> {
         int numberOfQuestions = 0;
         BufferedReader reader = new BufferedReader(new FileReader(path));
         String readLine;
-        Integer readCourseId;
+        Integer readCourseId = 0;
         String testName = null;
         boolean isActive = false;
 
@@ -37,13 +37,9 @@ public class TestsReadFrom implements ReadFromFile<Test, Integer> {
             if (readLine.toLowerCase().contains("course_id")) {
                 readCourseId = Integer.parseInt(readLine.split("=")[1].trim());
                 throw new NumberException();
-
-                //noinspection StatementWithEmptyBody
-                if (Objects.equals(readCourseId, courseId)) {
-                } else {
-                    throw new WrongFileFormatException();
-                    return null;
-                }
+            }
+            if (!Objects.equals(courseId, readCourseId)) {
+                throw new WrongFileFormatException();
             }
 
             if (readLine.toLowerCase().contains("test_name")) {
@@ -78,7 +74,6 @@ public class TestsReadFrom implements ReadFromFile<Test, Integer> {
         reader.close();
         if (numberOfQuestions != questionsCounter){
             throw new FileReadingException();
-            return null;
         }
         return readTest;
     }
