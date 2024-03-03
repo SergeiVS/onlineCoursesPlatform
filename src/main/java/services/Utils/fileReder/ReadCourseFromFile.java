@@ -5,9 +5,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReadCourseFromFile implements ReadFromFile<List<String>, Integer> {
+public class ReadCourseFromFile implements ReadFromFile<List<String>> {
     @Override
-    public List<String> readFromFile(String path, Integer courseId) throws IOException {
+    public List<String> readFromFile(String path) throws IOException {
 
         List<String> courseMaterial = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new java.io.FileReader(path));
