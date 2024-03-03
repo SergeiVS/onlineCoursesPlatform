@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CourseMaterialReadFrom implements ReadFromFile<List<String>, Integer> {
+public class ReadCourseFromFile implements ReadFromFile<List<String>, Integer> {
     @Override
     public List<String> readFromFile(String path, Integer courseId) throws IOException {
 
