@@ -22,7 +22,11 @@ public class ReadPersonDatabaseFromFile implements ReadFromFile<List<Person>> {
         String readLine = null;
 
         while ((readLine = reader.readLine()) != null) {
-            if (readLine.contains("##")) {
+
+
+            while (!readLine.contains("##")) {
+
+                readLine = reader.readLine();
                 Integer personId = 0;
                 String firstName = null;
                 String lastName = null;
@@ -30,17 +34,23 @@ public class ReadPersonDatabaseFromFile implements ReadFromFile<List<Person>> {
                 Integer courseId = 0;
                 String accessType = null;
 
-                personId = Integer.valueOf(Objects.requireNonNull(getStringText(readLine, "person_id")));
+                personId = Integer.valueOf((Objects.requireNonNull(getStringText(readLine, "person_id"))));
+                readLine= reader.readLine();
                 firstName = getStringText(readLine, "first_name");
+                readLine= reader.readLine();
                 lastName = getStringText(readLine, "last_name");
+                readLine= reader.readLine();
                 eMail = getStringText(readLine, "email");
-                courseId = Integer.valueOf(Objects.requireNonNull(getStringText(readLine, "course_id")));
+                readLine= reader.readLine();
+                courseId = Integer.valueOf((Objects.requireNonNull(getStringText(readLine, "course_id"))));
+                readLine= reader.readLine();
                 accessType = getStringText(readLine, "access_type");
+                readLine= reader.readLine();
 
                 database.add(new Person(personId, firstName, lastName, eMail, courseId, accessType));
 
-                throw new NumberException();
-            }
+              //  throw new NumberException();
+        }
         }
         reader.close();
 
@@ -48,8 +58,9 @@ public class ReadPersonDatabaseFromFile implements ReadFromFile<List<Person>> {
     }
 
     private static String getStringText(String readLine, String s) {
-        if (readLine.split("=")[0].trim().toLowerCase().equals(s)) {
+        if (readLine.contains(s)) {
             return readLine.split("=")[1].trim();
-        } else return null;
+        }
+return null;
     }
 }
