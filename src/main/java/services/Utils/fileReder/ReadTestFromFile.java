@@ -29,30 +29,26 @@ public class ReadTestFromFile implements ReadFromFile<Test> {
             while ((readLine = reader.readLine()) != null) {
 
                 if (readLine.toLowerCase().contains("number_of_questions")) {
-                    numberOfQuestions = Integer.parseInt(readLine.split("=")[1].trim());
+                    numberOfQuestions = Integer.parseInt(getString(readLine));
                 }
-
                 if (readLine.toLowerCase().contains("course_id")) {
-                    readCourseId = Integer.parseInt(readLine.split("=")[1].trim());
+                    readCourseId = Integer.parseInt(getString(readLine));
                 }
-
                 if (readLine.toLowerCase().contains("test_name")) {
-                    testName = readLine.split("=")[1].trim();
+                    testName = getString(readLine);
                 }
-
                 if (readLine.toLowerCase().contains("is_active")) {
-                    isActive = Boolean.parseBoolean(readLine.split("=")[1].trim());
+                    isActive = Boolean.parseBoolean(getString(readLine));
                 }
-
                 if (readLine.contains("##")) {
                     Test.Question question = getQuestion(readLine, reader);
                     readTest.addQuestion(question);
                     questionsCounter++;
                 }
             }
-            //поверка корректности считывания вопросов
 
             reader.close();
+
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         } catch (FileReadingException e) {
@@ -64,8 +60,14 @@ public class ReadTestFromFile implements ReadFromFile<Test> {
         } catch (IOException e) {
             System.out.println("Input output failed");
             e.printStackTrace();
+        } finally {
+            reader.close();
         }
         return readTest;
+    }
+
+    private static String getString(String readLine) {
+        return readLine.split("=")[1].trim();
     }
 
     private static Test.Question getQuestion(String readLine, BufferedReader reader) throws IOException {
