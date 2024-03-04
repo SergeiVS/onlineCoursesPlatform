@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class AddPasswordToIntoFile implements IntoFileWriter<Map.Entry<Integer, Integer>> {
     @Override
-    public boolean saveIntoFile(String path, Map.Entry<Integer, Integer> objForSave) throws IOException, NullPointerException {
+    public void saveIntoFile(String path, Map.Entry<Integer, Integer> objForSave) throws IOException, NullPointerException {
         FileWriter writer = new FileWriter(path);
 
        if(objForSave != null) {
@@ -17,6 +17,5 @@ public class AddPasswordToIntoFile implements IntoFileWriter<Map.Entry<Integer, 
        }
        writer.close();
 
-        return false;
     }
 }
