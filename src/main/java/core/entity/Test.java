@@ -6,14 +6,14 @@ import java.util.List;
 public class Test {
 
     private Integer courseId;
-    private String name;
+    private String testName;
     private boolean isActive;
     private List<Question> questions;
 
     // Конструктор
-    public Test(Integer courseId, String name, boolean isActive) {
+    public Test(Integer courseId, String testName, boolean isActive) {
         this.courseId = courseId;
-        this.name = name;
+        this.testName = testName;
         this.isActive = isActive;
         this.questions = new ArrayList<>();
     }
@@ -24,8 +24,8 @@ public class Test {
     }
 
     // Геттеры
-    public String getName() {
-        return name;
+    public String getTestName() {
+        return testName;
     }
 
     public boolean isActive() {
@@ -40,7 +40,7 @@ public class Test {
     public String toString() {
         return "Test{" +
                 "courseId=' " + courseId + '\'' +
-                "name='" + name + '\'' +
+                "testName='" + testName + '\'' +
                 ", isActive=" + isActive +
                 ", questions=" + questions +
                 '}';
