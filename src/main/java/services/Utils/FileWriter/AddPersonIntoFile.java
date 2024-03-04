@@ -1,5 +1,7 @@
 package services.Utils.FileWriter;
 
+
+
 import core.entity.Person;
 
 import java.io.BufferedWriter;
@@ -7,6 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 //Добавляет данные нового пользователя в конец файла
 public class AddPersonIntoFile implements IntoFileWriter<Person>{
+
     @Override
     public void saveIntoFile(String path, Person objForSave) throws IOException, NullPointerException, NumberFormatException, ClassCastException {
 

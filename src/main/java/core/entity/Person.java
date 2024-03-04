@@ -1,26 +1,24 @@
 package core.entity;
 
-import java.io.Serializable;
 import java.util.Objects;
 
-public class Person implements Serializable {
-
-    private Integer id;
+public class Person {
+    private Integer personId;
     private String firstName;
     private String lastName;
     private String eMail;
     private Integer courseId;
     private String accessType;
 
-    public Person(Integer id, String firstName, String lastName, String eMail) {
-        this.id = id;
+    public Person(Integer personId, String firstName, String lastName, String eMail) {
+        this.personId = personId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.eMail = eMail;
     }
 
-    public Person(Integer id, String firstName, String lastName, String eMail, Integer courseId, String accessType) {
-        this.id = id;
+    public Person(Integer personId, String firstName, String lastName, String eMail, Integer courseId, String accessType) {
+        this.personId = personId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.eMail = eMail;
@@ -28,7 +26,7 @@ public class Person implements Serializable {
         this.accessType = accessType;
     }
 
-    public Integer getId() { return id; }
+    public Integer getId() { return personId; }
 
     public String getFirstName() {
         return firstName;
@@ -75,7 +73,7 @@ public class Person implements Serializable {
     @Override
     public String toString() {
         return "Person{" +
-                "Id=" + id +
+                "Id=" + personId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", eMail='" + eMail + '\'' +
