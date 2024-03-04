@@ -2,10 +2,12 @@ package services.Utils.fileReder;
 
 import core.entity.Person;
 import repository.RepositoryInterface;
+import services.validation.FileReadingException;
 import services.validation.NullException;
 import services.validation.NumberException;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,41 +21,52 @@ public class ReadPersonDatabaseFromFile implements ReadFromFile<List<Person>> {
     public List<Person> readFromFile(String path) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(path));
         List<Person> database = new ArrayList<>();
-        String readLine = null;
+        String readLine;
 
-        while ((readLine = reader.readLine()) != null) {
+        try {
+
+            while ((readLine = reader.readLine()) != null) {
 
 
-            while (!readLine.contains("##")) {
+                if (readLine.contains("##")) {
 
-                readLine = reader.readLine();
-                Integer personId = 0;
-                String firstName = null;
-                String lastName = null;
-                String eMail = null;
-                Integer courseId = 0;
-                String accessType = null;
+                    readLine = reader.readLine();
+                    Integer personId = 0;
+                    String firstName = null;
+                    String lastName = null;
+                    String eMail = null;
+                    Integer courseId = 0;
+                    String accessType = null;
 
-                personId = Integer.valueOf((Objects.requireNonNull(getStringText(readLine, "person_id"))));
-                readLine= reader.readLine();
-                firstName = getStringText(readLine, "first_name");
-                readLine= reader.readLine();
-                lastName = getStringText(readLine, "last_name");
-                readLine= reader.readLine();
-                eMail = getStringText(readLine, "email");
-                readLine= reader.readLine();
-                courseId = Integer.valueOf((Objects.requireNonNull(getStringText(readLine, "course_id"))));
-                readLine= reader.readLine();
-                accessType = getStringText(readLine, "access_type");
-                readLine= reader.readLine();
+                    personId = Integer.valueOf((Objects.requireNonNull(getStringText(readLine, "person_id"))));
+                    readLine = reader.readLine();
+                    firstName = getStringText(readLine, "first_name");
+                    readLine = reader.readLine();
+                    lastName = getStringText(readLine, "last_name");
+                    readLine = reader.readLine();
+                    eMail = getStringText(readLine, "email");
+                    readLine = reader.readLine();
+                    courseId = Integer.valueOf((Objects.requireNonNull(getStringText(readLine, "course_id"))));
+                    readLine = reader.readLine();
+                    accessType = getStringText(readLine, "access_type");
+                    readLine = reader.readLine();
 
-                database.add(new Person(personId, firstName, lastName, eMail, courseId, accessType));
-
-              //  throw new NumberException();
+                    database.add(new Person(personId, firstName, lastName, eMail, courseId, accessType));
+                }
+            }
+            reader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        } catch ( FileReadingException e) {
+            e.printStackTrace();
+        } catch (NumberFormatException e) {
+            System.out.println("Failed numbers reading");
+        } catch (NullPointerException e) {
+            System.out.println("Failed file reading");
+        } catch (IOException e) {
+            System.out.println("Input output failed");
+            e.printStackTrace();
         }
-        }
-        reader.close();
-
         return database;
     }
 
@@ -61,6 +74,6 @@ public class ReadPersonDatabaseFromFile implements ReadFromFile<List<Person>> {
         if (readLine.contains(s)) {
             return readLine.split("=")[1].trim();
         }
-return null;
+        return null;
     }
 }
