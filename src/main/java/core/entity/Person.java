@@ -42,11 +42,11 @@ public class Person implements Serializable {
         return eMail;
     }
 
-    public Integer getCourseName() {
+    public Integer getCourseId() {
         return courseId;
     }
 
-    public void setCourseName(Integer courseId) {
+    public void setCourseId(Integer courseId) {
         this.courseId = courseId;
     }
 
