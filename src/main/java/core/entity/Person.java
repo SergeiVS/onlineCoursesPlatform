@@ -7,15 +7,15 @@ public class Person {
     private Integer personId;
     private String firstName;
     private String lastName;
-    private String eMail;
-    private String courseName;
+    private String email;
+    private Integer courseId;
     private String accessType;
 
-    public Person(Integer personId, String firstName, String lastName, String eMail) {
+    public Person(Integer personId, String firstName, String lastName, String email) {
         this.personId = personId;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.eMail = eMail;
+        this.email = email;
     }
 
     public Integer getPersonId() { return personId; }
@@ -28,16 +28,16 @@ public class Person {
         return lastName;
     }
 
-    public String geteMail() {
-        return eMail;
+    public String getEmail() {
+        return email;
     }
 
-    public String getCourseName() {
-        return courseName;
+    public Integer getCourseId() {
+        return courseId;
     }
 
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
+    public void setCourseId(Integer courseId) {
+        this.courseId = courseId;
     }
 
     public String getAccessType() {
@@ -54,12 +54,12 @@ public class Person {
         if (!(o instanceof Person person)) return false;
         return Objects.equals(getPersonId(), person.getPersonId()) && Objects.equals(getFirstName(),
                 person.getFirstName()) && Objects.equals(getLastName(),
-                person.getLastName()) && Objects.equals(geteMail(), person.geteMail());
+                person.getLastName()) && Objects.equals(getEmail(), person.getEmail());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getPersonId(), getFirstName(), getLastName(), geteMail());
+        return Objects.hash(getPersonId(), getFirstName(), getLastName(), getEmail());
     }
 
     @Override
@@ -68,8 +68,8 @@ public class Person {
                 "PersonId=" + personId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", eMail='" + eMail + '\'' +
-                ", courseName='" + courseName + '\'' +
+                ", eMail='" + email + '\'' +
+                ", courseName='" + courseId + '\'' +
                 ", accessType='" + accessType + '\'' +
                 '}';
     }
