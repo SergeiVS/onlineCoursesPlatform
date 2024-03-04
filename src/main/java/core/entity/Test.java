@@ -49,17 +49,17 @@ public class Test {
     // Внутренний класс "Question"
     public class Question {
         private String question;
-        private String answer_a;
-        private String answer_b;
-        private String answer_c;
+        private String answerA;
+        private String answerB;
+        private String answerC;
         private String proofValue;
 
         // Конструктор
-        public Question(String question, String answer_a, String answer_b, String answer_c, String proofValue) {
+        public Question(String question, String answerA, String answerB, String answerC, String proofValue) {
             this.question = question;
-            this.answer_a = answer_a;
-            this.answer_b = answer_b;
-            this.answer_c = answer_c;
+            this.answerA = answerA;
+            this.answerB = answerB;
+            this.answerC = answerC;
             this.proofValue = proofValue;
         }
 
@@ -68,16 +68,16 @@ public class Test {
             return question;
         }
 
-        public String getAnswer_a() {
-            return answer_a;
+        public String getAnswerA() {
+            return answerA;
         }
 
-        public String getAnswer_b() {
-            return answer_b;
+        public String getAnswerB() {
+            return answerB;
         }
 
-        public String getAnswer_c() {
-            return answer_c;
+        public String getAnswerC() {
+            return answerC;
         }
 
         public String getProofValue() {
@@ -88,9 +88,9 @@ public class Test {
         public String toString() {
             return "Question{" +
                     "question='" + question + '\'' +
-                    ", answer_a='" + answer_a + '\'' +
-                    ", answer_b='" + answer_b + '\'' +
-                    ", answer_c='" + answer_c + '\'' +
+                    ", answerA='" + answerA + '\'' +
+                    ", answerA='" + answerA + '\'' +
+                    ", answerA='" + answerA + '\'' +
                     ", proofValue='" + proofValue + '\'' +
                     '}';
         }
