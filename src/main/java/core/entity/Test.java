@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Test {
+
+    private Integer courseId;
     private String name;
     private boolean isActive;
     private List<Question> questions;
 
     // Конструктор
-    public Test(String name, boolean isActive) {
+    public Test(Integer courseId, String name, boolean isActive) {
+        this.courseId = courseId;
         this.name = name;
         this.isActive = isActive;
         this.questions = new ArrayList<>();
@@ -36,6 +39,7 @@ public class Test {
     @Override
     public String toString() {
         return "Test{" +
+                "courseId=' " + courseId + '\'' +
                 "name='" + name + '\'' +
                 ", isActive=" + isActive +
                 ", questions=" + questions +
