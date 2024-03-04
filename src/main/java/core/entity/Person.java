@@ -5,21 +5,30 @@ import java.util.Objects;
 
 public class Person implements Serializable {
 
-    private Integer personId;
+    private Integer id;
     private String firstName;
     private String lastName;
     private String eMail;
-    private String courseName;
+    private Integer courseId;
     private String accessType;
 
-    public Person(Integer personId, String firstName, String lastName, String eMail) {
-        this.personId = personId;
+    public Person(Integer id, String firstName, String lastName, String eMail) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.eMail = eMail;
     }
 
-    public Integer getPersonId() { return personId; }
+    public Person(Integer id, String firstName, String lastName, String eMail, Integer courseId, String accessType) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.eMail = eMail;
+        this.courseId = courseId;
+        this.accessType = accessType;
+    }
+
+    public Integer getId() { return id; }
 
     public String getFirstName() {
         return firstName;
@@ -33,12 +42,12 @@ public class Person implements Serializable {
         return eMail;
     }
 
-    public String getCourseName() {
-        return courseName;
+    public Integer getCourseName() {
+        return courseId;
     }
 
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
+    public void setCourseName(Integer courseId) {
+        this.courseId = courseId;
     }
 
     public String getAccessType() {
@@ -53,24 +62,24 @@ public class Person implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Person person)) return false;
-        return Objects.equals(getPersonId(), person.getPersonId()) && Objects.equals(getFirstName(),
+        return Objects.equals(getId(), person.getId()) && Objects.equals(getFirstName(),
                 person.getFirstName()) && Objects.equals(getLastName(),
                 person.getLastName()) && Objects.equals(geteMail(), person.geteMail());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getPersonId(), getFirstName(), getLastName(), geteMail());
+        return Objects.hash(getId(), getFirstName(), getLastName(), geteMail());
     }
 
     @Override
     public String toString() {
         return "Person{" +
-                "PersonId=" + personId +
+                "Id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", eMail='" + eMail + '\'' +
-                ", courseName='" + courseName + '\'' +
+                ", courseName='" + courseId + '\'' +
                 ", accessType='" + accessType + '\'' +
                 '}';
     }
