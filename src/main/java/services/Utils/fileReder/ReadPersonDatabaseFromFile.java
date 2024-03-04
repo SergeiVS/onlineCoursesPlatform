@@ -49,12 +49,12 @@ public class ReadPersonDatabaseFromFile implements ReadFromFile<List<Person>> {
                     courseId = Integer.valueOf((Objects.requireNonNull(getStringText(readLine, "course_id"))));
                     readLine = reader.readLine();
                     accessType = getStringText(readLine, "access_type");
-                    readLine = reader.readLine();
+
 
                     database.add(new Person(personId, firstName, lastName, eMail, courseId, accessType));
                 }
             }
-            reader.close();
+
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         } catch ( FileReadingException e) {
@@ -66,6 +66,8 @@ public class ReadPersonDatabaseFromFile implements ReadFromFile<List<Person>> {
         } catch (IOException e) {
             System.out.println("Input output failed");
             e.printStackTrace();
+        }finally {
+            reader.close();
         }
         return database;
     }
