@@ -1,6 +1,5 @@
-package services.Utils.FileWriter;
+package services.Utils.fileWriter;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public interface IntoFileWriter<T> {
