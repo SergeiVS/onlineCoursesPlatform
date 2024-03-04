@@ -22,7 +22,7 @@ public class ReadTestFromFile implements ReadFromFile<Test> {
         Integer readCourseId = 0;
         String testName = null;
         boolean isActive = false;
-        final var readTest = new Test(testName, isActive);
+        final var readTest = new Test(readCourseId, testName, isActive);
         try {
 
 
