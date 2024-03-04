@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Grades {
+public class Grades implements interfaceGradesRepository{
     private Map<Integer, Map<Integer, List<Integer>>> grades = new HashMap<>();
 
     //(Первый ключ- courseId, Ключ в значении- personId, Лист из Integer- результаты тестов.)
@@ -21,6 +21,8 @@ public class Grades {
             grades.put(courseId, new HashMap<>());
 
     }
+
+    @Override
     public void addStudentGrade(Integer courseId, Integer studentId, Integer grade){
 
         if (grades.containsKey(courseId)) {
