@@ -16,10 +16,10 @@ public class AddPersonIntoFile implements IntoFileWriter<Person> {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(path))) {
 
             writer.append("##")
-                    .append("user_id = ").append(String.valueOf(objForSave.getId())).append("\n")
+                    .append("user_id = ").append(String.valueOf(objForSave.getPersonId())).append("\n")
                     .append("first_name : ").append(objForSave.getFirstName()).append("\n")
                     .append("last_name : ").append(objForSave.getLastName()).append("\n")
-                    .append("email : ").append(objForSave.geteMail()).append("\n")  // Исправлено geteMail на getEmail
+                    .append("email : ").append(objForSave.getEmail()).append("\n")  // Исправлено geteMail на getEmail
                     .append("course_id : ").append(String.valueOf(objForSave.getCourseId())).append("\n")
                     .append("access_type : ").append(objForSave.getAccessType()).append("\n");
         }
