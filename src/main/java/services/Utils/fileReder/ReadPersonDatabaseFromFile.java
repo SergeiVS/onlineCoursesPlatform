@@ -2,6 +2,8 @@ package services.Utils.fileReder;
 
 import core.entity.Person;
 import services.validation.FileReadingException;
+import services.validation.NullException;
+import services.validation.NumberException;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -50,18 +52,12 @@ public class ReadPersonDatabaseFromFile implements ReadFromFile<List<Person>> {
                 }
             }
 
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found");
-        } catch ( FileReadingException e) {
-            e.printStackTrace();
-        } catch (NumberFormatException e) {
-            System.out.println("Failed numbers reading");
-        } catch (NullPointerException e) {
-            System.out.println("Failed file reading");
+        } catch (FileReadingException | NumberException | NullException e) {
+            System.out.println(e.getMessage());
         } catch (IOException e) {
             System.out.println("Input output failed");
             e.printStackTrace();
-        }finally {
+        } finally {
             reader.close();
         }
         return database;

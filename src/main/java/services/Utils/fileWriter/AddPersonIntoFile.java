@@ -1,19 +1,23 @@
 package services.Utils.fileWriter;
 
 
-
 import core.entity.Person;
+import services.validation.FileReadingException;
+import services.validation.NullException;
+import services.validation.NumberException;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+
 //Добавляет данные нового пользователя в конец файла
-public class AddPersonIntoFile implements IntoFileWriter<Person>{
+public class AddPersonIntoFile implements IntoFileWriter<Person> {
 
     @Override
     public void saveIntoFile(String path, Person objForSave) throws IOException, NullPointerException, NumberFormatException, ClassCastException {
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(path))) {
+
             writer.append("##")
                     .append("user_id = ").append(String.valueOf(objForSave.getId())).append("\n")
                     .append("first_name : ").append(objForSave.getFirstName()).append("\n")
@@ -22,6 +26,5 @@ public class AddPersonIntoFile implements IntoFileWriter<Person>{
                     .append("course_id : ").append(String.valueOf(objForSave.getCourseId())).append("\n")
                     .append("access_type : ").append(objForSave.getAccessType()).append("\n");
         }
-
     }
 }
