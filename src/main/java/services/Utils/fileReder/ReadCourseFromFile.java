@@ -27,7 +27,7 @@ try {
                 courseMaterial.add(0, readCourseId);
             }
             if (readLine.toLowerCase().contains("course_name")){
-                courseName = readLine.split("=")[1].trim();
+                courseName = getString(readLine);
                 courseMaterial.add(1,courseName);
             }
             courseMaterial.add(readLine);

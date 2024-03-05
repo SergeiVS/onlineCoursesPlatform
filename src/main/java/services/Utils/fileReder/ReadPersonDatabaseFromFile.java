@@ -1,10 +1,7 @@
 package services.Utils.fileReder;
 
 import core.entity.Person;
-import repository.RepositoryInterface;
 import services.validation.FileReadingException;
-import services.validation.NullException;
-import services.validation.NumberException;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -27,7 +24,6 @@ public class ReadPersonDatabaseFromFile implements ReadFromFile<List<Person>> {
 
             while ((readLine = reader.readLine()) != null) {
 
-
                 if (readLine.contains("##")) {
 
                     readLine = reader.readLine();
@@ -49,7 +45,6 @@ public class ReadPersonDatabaseFromFile implements ReadFromFile<List<Person>> {
                     courseId = Integer.valueOf((Objects.requireNonNull(getStringText(readLine, "course_id"))));
                     readLine = reader.readLine();
                     accessType = getStringText(readLine, "access_type");
-
 
                     database.add(new Person(personId, firstName, lastName, eMail, courseId, accessType));
                 }

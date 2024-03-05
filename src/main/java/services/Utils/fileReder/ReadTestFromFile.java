@@ -66,6 +66,8 @@ public class ReadTestFromFile implements ReadFromFile<Test> {
         return readTest;
     }
 
+
+
     private static String getString(String readLine) {
         return readLine.split("=")[1].trim();
     }

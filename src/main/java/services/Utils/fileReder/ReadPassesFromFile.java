@@ -20,7 +20,7 @@ public class ReadPassesFromFile implements ReadFromFile<Map<Integer, Integer>>{
         try {
             while ((readLine = reader.readLine()) != null){
 
-                String[] strings = readLine.split(":");
+                String[] strings = readLine.split("=");
                 passes.put(Integer.parseInt(strings[0].trim()),Integer.parseInt(strings[1].trim()));
             }
 
