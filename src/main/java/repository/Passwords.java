@@ -16,11 +16,7 @@ public class Passwords{
         return passwords;
     }
 
-    public void addPass(Integer email, Integer password){
-        // Шифрование email и password с помощью метода hashCode()
-        int emailHash = email.hashCode();
-        int passwordHash = password.hashCode();
-
+    public void addPass(Integer emailHash, Integer passwordHash){
         // Добавление пароля и e-mail в коллекцию
         passwords.put(emailHash, passwordHash);
 

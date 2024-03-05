@@ -1,16 +1,14 @@
 package repository;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Grades implements interfaceGradesRepository{
-    private Map<Integer, Map<Integer, List<Integer>>> grades = new HashMap<>();
+    private Map<Integer, Map<Integer, List<Integer>>> grades;
 
     //(Первый ключ- courseId, Ключ в значении- personId, Лист из Integer- результаты тестов.)
-    public Grades(Map<Integer, Map<Integer, List<Integer>>> grades) {
-        this.grades = grades;
+    public Grades() {
+
+        this.grades = new HashMap<>( );
     }
 
     public Map<Integer, Map<Integer, List<Integer>>> getGrades() {
@@ -23,7 +21,7 @@ public class Grades implements interfaceGradesRepository{
     }
 
     @Override
-    public void addStudentGrade(Integer courseId, Integer studentId, Integer grade){
+    public Map<Object, Object> addStudentGrade(Integer courseId, Integer studentId, Integer grade) {
 
         if (grades.containsKey(courseId)) {
             Map<Integer, List<Integer>> courseGrades = grades.get(courseId);
@@ -36,7 +34,9 @@ public class Grades implements interfaceGradesRepository{
                 List<Integer> studentGrades = List.of(grade);
                 courseGrades.put(studentId, studentGrades);
             }
-            }
+        }
+        return Map.of();
+
 
     }
     public List<Integer> findGradesById(Integer courseId, Integer studentId) {
