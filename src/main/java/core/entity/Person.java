@@ -17,14 +17,14 @@ public class Person {
         this.email = email;
     }
 
-    public Person(Integer personId, String firstName, String lastName, String email, Integer courseId, String accessType) {
-        this.personId = personId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.courseId = courseId;
-        this.accessType = accessType;
-    }
+//    public Person(Integer personId, String firstName, String lastName, String email, Integer courseId, String accessType) {
+//        this.personId = personId;
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.email = email;
+//        this.courseId = courseId;
+//        this.accessType = accessType;
+//    }
 
     public Integer getPersonId() { return personId; }
 
