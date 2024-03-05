@@ -1,11 +1,10 @@
 package services.Utils.fileReder;
 
-import services.validation.FileReadingException;
-import services.validation.NullException;
-import services.validation.NumberException;
+import services.validation.exeptions.FileReadingException;
+import services.validation.exeptions.NullException;
+import services.validation.exeptions.NumberException;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;

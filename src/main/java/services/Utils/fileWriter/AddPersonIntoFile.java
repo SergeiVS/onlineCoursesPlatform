@@ -2,9 +2,6 @@ package services.Utils.fileWriter;
 
 
 import core.entity.Person;
-import services.validation.FileReadingException;
-import services.validation.NullException;
-import services.validation.NumberException;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
