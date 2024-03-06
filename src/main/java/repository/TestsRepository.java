@@ -2,10 +2,7 @@ package repository;
 
 import core.entity.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class TestsRepository implements TestsRepositoryInterface{
@@ -20,10 +17,9 @@ public class TestsRepository implements TestsRepositoryInterface{
 
     @Override
     public List<Test> findTestsByCourseId(Integer courseId) {
-        return tests.entrySet().stream()
-                .filter(entry -> entry.getKey().equals(courseId)) //фильтруем по ид
-                .flatMap(entry -> entry.getValue().stream())//собираем все тесты
-                .collect(Collectors.toList()); //добавляем в список
+        List<Test> testsForCourse = tests.getOrDefault(courseId, Collections.emptyList());
+
+        return testsForCourse;
     }
 
     @Override
