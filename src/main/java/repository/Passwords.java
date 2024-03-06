@@ -3,7 +3,7 @@ package repository;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Passwords{
+public class Passwords implements PasswordsRepositoryInterface{
     Map<Integer, Integer> passwords = new HashMap<>();
 
     //где оба поля ключ- е-майл и значение- пароль будут зашифрованы через Хэшкод.
