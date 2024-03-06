@@ -21,30 +21,30 @@ public class Grades implements GradesRepositoryInterface {
     }
 
     @Override
-    public Map<Object, Object> addStudentGrade(Integer courseId, Integer studentId, Integer grade) {
+    public Map<Object, Object> addStudentGrade(Integer courseId, Integer personId, Integer grade) {
 
         if (grades.containsKey(courseId)) {
             Map<Integer, List<Integer>> courseGrades = grades.get(courseId);
             // Проверяем, существует ли студент в данном курсе
-            if (courseGrades.containsKey(studentId)) {
+            if (courseGrades.containsKey(personId)) {
                 // Если студент найден, добавляем оценку в список его оценок
-                courseGrades.get(studentId).add(grade);
+                courseGrades.get(personId).add(grade);
             } else {
                 // Если студент не найден, создаем новый список оценок и добавляем оценку
                 List<Integer> studentGrades = List.of(grade);
-                courseGrades.put(studentId, studentGrades);
+                courseGrades.put(personId, studentGrades);
             }
         }
         return Map.of();
 
 
     }
-    public List<Integer> findGradesById(Integer courseId, Integer studentId) {
+    public List<Integer> findGradesById(Integer courseId, Integer personId) {
 
         if (grades.containsKey(courseId)) {
             Map<Integer, List<Integer>> courseGrades = grades.get(courseId);
-            if (courseGrades.containsKey(studentId)) {
-                return courseGrades.get(studentId);
+            if (courseGrades.containsKey(personId)) {
+                return courseGrades.get(personId);
             }
         }
         return List.of(); // Возвращаем пустой список, если курс или студент не найдены
