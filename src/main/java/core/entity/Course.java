@@ -6,39 +6,41 @@ import java.util.List;
 public class Course {
 
     private Integer courseId;
-    private  String name;
+    private  String courseName;
     private boolean isActive;
-    private String material;
-    private List<Test> tests;
+    private List<String> material;
 
-    public Course(String name, boolean isActive, String material, List<String> tests) {
-        this.name = name;
-        this.isActive = isActive;
-        this.material = material;
-        this.tests = new ArrayList<>();
+    public Integer getCourseId() {
+        return courseId;
     }
 
-    public String getName() {
-        return name;
+    public String getCourseName() {
+        return courseName;
     }
 
     public boolean isActive() {
         return isActive;
     }
 
+    public List<String> getMaterial() {
+        return material;
+    }
+
     public void setActive(boolean active) {
         isActive = active;
     }
 
-    public String getMaterial() {
-        return material;
-    }
-
-    public void setMaterial(String material) {
+    public void setMaterial(List<String> material) {
         this.material = material;
     }
 
-    public List<Test> getTests() {
-        return tests;
+    @Override
+    public String toString() {
+        return "Course{" +
+                "courseId=" + courseId +
+                ", courseName='" + courseName + '\'' +
+                ", isActive=" + isActive +
+                ", material=" + material +
+                '}';
     }
 }
