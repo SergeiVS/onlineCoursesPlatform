@@ -17,9 +17,9 @@ public class TestsRepository implements TestsRepositoryInterface{
 
     @Override
     public List<Test> findTestsByCourseId(Integer courseId) {
-        List<Test> testsForCourse = tests.getOrDefault(courseId, Collections.emptyList());
+        List<Test> testsByCourseId = tests.getOrDefault(courseId, Collections.emptyList());
 
-        return testsForCourse;
+        return testsByCourseId;
     }
 
     @Override
