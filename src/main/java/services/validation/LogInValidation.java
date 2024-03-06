@@ -2,24 +2,25 @@ package services.validation;
 
 import core.dto.errors.ErrorCoding;
 import core.dto.errors.ErrorsDto;
-import core.dto.requests.NewPersonDto;
+import core.dto.requests.LogInDto;
 import services.validation.exeptions.NullException;
 
 import java.util.List;
 
-public class NewPersonDtoValidation implements ValidationInterface<NewPersonDto> {
+public class LogInValidation implements ValidationInterface<LogInDto> {
     EmailFormatValidation emailValidation = new EmailFormatValidation();
 
     @Override
-    public boolean validate(NewPersonDto newPersonDto, List<ErrorsDto> errors) {
+    public boolean validate(LogInDto logInDto, List<ErrorsDto> errors) {
         boolean isValid = true;
         try {
-            String fName = newPersonDto.getFirstName();
-            String lName = newPersonDto.getLastName();
-            String email = newPersonDto.geteMail();
 
-            if (fName.isEmpty() || lName.isEmpty() || email.isEmpty()) {
-                errors.add(new ErrorsDto(ErrorCoding.E_400, "Fields: name and email can not be empty"));
+            String email = logInDto.geteMail();
+            Integer passHash = logInDto.getPasswordHash();
+
+            if (email.isEmpty() || passHash == null) {
+
+                errors.add(new ErrorsDto(ErrorCoding.E_400, "Fields can not be empty"));
                 isValid = false;
             }
             if (!(emailValidation.validate(email, errors))) {
@@ -35,4 +36,5 @@ public class NewPersonDtoValidation implements ValidationInterface<NewPersonDto>
         }
         return isValid;
     }
+
 }

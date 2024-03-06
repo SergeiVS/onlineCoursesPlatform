@@ -8,18 +8,16 @@ public class AddChangeCourseDto {
 
     private final Integer courseId;
     private final String courseName;
-    // courseMaterial- ссылка на файл откуда брать материал
-    private final String sourceMaterial;
+    // sourceMaterial- ссылка на файл откуда брать материал, это поле при создании курса может остаться пустым,
+    // но при пустых материалах и/или тестах курс не может быть активным.
+    private final String materialSource;
 
-    // courseMaterial- ссылка на файл куда записать материал так можно записывать как информацию о курсе,
-    // так и добавлять тесты. В зависимости в какой файл записывается.
-    private final String courseMaterial;
 
-    public AddChangeCourseDto(Integer courseId, String courseName, String sourceMaterial, String courseMaterial) {
+    public AddChangeCourseDto(Integer courseId, String courseName, String materialSource) {
         this.courseId = courseId;
         this.courseName = courseName;
-        this.sourceMaterial = sourceMaterial;
-        this.courseMaterial = courseMaterial;
+        this.materialSource = materialSource;
+
     }
 
     public Integer getCourseId() {
@@ -30,21 +28,17 @@ public class AddChangeCourseDto {
         return courseName;
     }
 
-    public String getSourceMaterial() {
-        return sourceMaterial;
+    public String getMaterialSource() {
+        return materialSource;
     }
 
-    public String getCourseMaterial() {
-        return courseMaterial;
-    }
 
     @Override
     public String toString() {
         return "AddChangeCourseDto{" +
                 "courseId=" + courseId +
                 ", courseName='" + courseName + '\'' +
-                ", sourceMaterial='" + sourceMaterial + '\'' +
-                ", courseMaterial='" + courseMaterial + '\'' +
+                ", materialSource='" + materialSource + '\'' +
                 '}';
     }
 }
