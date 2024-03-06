@@ -13,10 +13,10 @@ public class AddChangeCourseDto {
     private final String materialSource;
 
 
-    public AddChangeCourseDto(Integer courseId, String courseName, String sourceMaterial) {
+    public AddChangeCourseDto(Integer courseId, String courseName, String materialSource) {
         this.courseId = courseId;
         this.courseName = courseName;
-        this.materialSource = sourceMaterial;
+        this.materialSource = materialSource;
 
     }
 
@@ -38,7 +38,7 @@ public class AddChangeCourseDto {
         return "AddChangeCourseDto{" +
                 "courseId=" + courseId +
                 ", courseName='" + courseName + '\'' +
-                ", sourceMaterial='" + materialSource + '\'' +
+                ", materialSource='" + materialSource + '\'' +
                 '}';
     }
 }
