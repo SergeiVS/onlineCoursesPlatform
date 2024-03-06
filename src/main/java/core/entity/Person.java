@@ -3,7 +3,6 @@ package core.entity;
 import java.util.Objects;
 
 public class Person {
-
     private Integer personId;
     private String firstName;
     private String lastName;
@@ -17,6 +16,15 @@ public class Person {
         this.lastName = lastName;
         this.email = email;
     }
+
+//    public Person(Integer personId, String firstName, String lastName, String email, Integer courseId, String accessType) {
+//        this.personId = personId;
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.email = email;
+//        this.courseId = courseId;
+//        this.accessType = accessType;
+//    }
 
     public Integer getPersonId() { return personId; }
 
@@ -65,7 +73,7 @@ public class Person {
     @Override
     public String toString() {
         return "Person{" +
-                "PersonId=" + personId +
+                "Id=" + personId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", eMail='" + email + '\'' +
