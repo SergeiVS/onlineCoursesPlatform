@@ -11,7 +11,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
+// В этом классе считываются данные пользователей из файла и преобразуются в объекты типа Person.
+// Возвращаются в виде Списка объектов типа Person.
 public class ReadPersonDatabaseFromFile implements ReadFromFile<List<Person>> {
 
 
@@ -61,7 +62,7 @@ public class ReadPersonDatabaseFromFile implements ReadFromFile<List<Person>> {
         }
         return database;
     }
-
+// Вспомогательный метод для считывания значения из строки в файле
     private static String getStringText(String readLine, String s) {
         if (readLine.contains(s)) {
             return readLine.split("=")[1].trim();

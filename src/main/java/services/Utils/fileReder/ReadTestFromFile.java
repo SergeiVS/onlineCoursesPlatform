@@ -12,7 +12,7 @@ import java.io.IOException;
 // считывает из файла данные теста для проверки знаний пользователя.
 public class ReadTestFromFile implements ReadFromFile<Test> {
 
-    // метод возвращает готовый объект класса Test. На вход получает путь к нужному файлу и ид курса для проверки
+    // Метод возвращает готовый объект класса Test. На вход получает путь к нужному файлу и ид курса для проверки
     @Override
     public Test readFromFile(String path) throws IOException {
 

@@ -7,7 +7,8 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-//Добавляет данные нового пользователя в конец файла
+//Добавляет данные нового пользователя в конец файла. Исключения в Классе не обрабатываются,
+// а переадресуются методу который этот класс вызвал и должны обрабатываться там. На входе Объект типа Person.
 public class AddPersonIntoFile implements IntoFileWriter<Person> {
 
     @Override

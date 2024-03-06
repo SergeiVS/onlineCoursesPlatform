@@ -1,7 +1,7 @@
 package core.dto.errors;
 
 public enum ErrorCoding {
-
+// Коды из таблицы HTTP
     E_200(200, "Ok"),
     E_201(201, "Created"),
     E_202(202, "Accepted"),

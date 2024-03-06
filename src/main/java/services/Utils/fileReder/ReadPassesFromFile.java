@@ -9,7 +9,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
+// В этом классе считываются хешкоды паролей и логинов пользователей из файла при запуске приложения и возвращаются
+// в виде коллекции Map<Integer, Integer> где кюч - это хэнкод логина, а значение пароля.
 public class ReadPassesFromFile implements ReadFromFile<Map<Integer, Integer>> {
     @Override
     public Map<Integer, Integer> readFromFile(String path) throws IOException {
