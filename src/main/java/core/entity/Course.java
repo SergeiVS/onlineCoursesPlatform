@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Course {
 
+    private Integer courseId;
     private  String name;
     private boolean isActive;
     private String material;
