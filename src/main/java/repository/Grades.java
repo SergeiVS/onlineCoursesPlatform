@@ -2,7 +2,7 @@ package repository;
 
 import java.util.*;
 
-public class Grades implements interfaceGradesRepository{
+public class Grades implements GradesRepositoryInterface {
     private Map<Integer, Map<Integer, List<Integer>>> grades;
 
     //(Первый ключ- courseId, Ключ в значении- personId, Лист из Integer- результаты тестов.)
