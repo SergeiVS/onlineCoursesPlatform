@@ -14,6 +14,10 @@ public class Course {
         return courseId;
     }
 
+    public void setCourseId(Integer courseId) {
+        this.courseId = courseId;
+    }
+
     public String getCourseName() {
         return courseName;
     }
@@ -33,6 +37,7 @@ public class Course {
     public void setMaterial(List<String> material) {
         this.material = material;
     }
+
 
     @Override
     public String toString() {
