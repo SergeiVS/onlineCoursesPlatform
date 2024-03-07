@@ -37,10 +37,7 @@ public class EmailFormatValidation implements ValidationInterface<String> {
             errors.add(new ErrorsDto(ErrorCoding.E_400, "Request is null"));
             return false;
         }
-        if (result) {
-            errors.add(new ErrorsDto(ErrorCoding.E_200, "Email is valid"));
-
-        } else {
+        if (!result) {
 
             errors.add(new ErrorsDto(ErrorCoding.E_401, "Email format is not valid"));
         }

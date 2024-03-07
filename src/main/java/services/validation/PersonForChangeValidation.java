@@ -33,12 +33,8 @@ public class PersonForChangeValidation implements ValidationInterface<PersonForC
                 isValid = false;
             }
 
-        } catch (NumberFormatException e) {
-            errors.add(new ErrorsDto(ErrorCoding.E_400, "Number input failed"));
-            isValid = false;
-        } catch (
-                NullException e) {
-            errors.add(new ErrorsDto(ErrorCoding.E_400, "No null value alloyed"));
+        } catch (NumberFormatException | NullException e) {
+            errors.add(new ErrorsDto(ErrorCoding.E_400, e.getMessage()));
             isValid = false;
         }
         return isValid;
