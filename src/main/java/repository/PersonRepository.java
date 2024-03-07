@@ -5,7 +5,7 @@ import core.entity.Person;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PersonRepository implements Repository<Person> {
+public class PersonRepository implements RepositoryInterface<Person> {
     private List<Person> persons;
     private int idGenerator = 30;
     public PersonRepository() {
