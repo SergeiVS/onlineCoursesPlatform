@@ -1,46 +1,75 @@
 package repository;
 
 import core.entity.Person;
-import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class PersonRepository implements Repository<Person> {
-    public List<Person> persons;
-    public PersonRepository(List<Person> persons) {
-        this.persons = persons;
-        this.idGenerator = 1;
+    private List<Person> persons;
+    private int idGenerator = 30;
+    public PersonRepository() {
+        this.persons = new ArrayList<>();
     }
     @Override
-    public List<Person> getAll() {
-        return persons;
+    public List<Person> findAll() {
+        return new ArrayList<>(persons);
     }
-    public void register(Person person) {
-        if (person.getPersonId() == 0) {
-            person.setPersonId(idGenerator++);
-        }
-        persons.add(person);
-    }
-    public void registerAll(List<Person> newPersons) {
-        for (Person person : newPersons) {
-            if (person.getPersonId() == 0) {
-                person.setPersonId(idGenerator++);
+    @Override
+    public List<Person> findByName(String lastName) {
+        List<Person> result = new ArrayList<>();
+        for (Person person : persons) {
+            if (person.getLastName().equals(lastName)) {
+                result.add(person);
             }
         }
-        persons.addAll(newPersons);
+        return result.isEmpty() ? null : result;
     }
-    public List<Person> findByName(String lastName) {
-        return persons.stream().filter(person -> person.getLastName().equals(lastName)).collect(Collectors.toList());
+    @Override
+    public Person findById(Integer id) {
+        for (Person person : persons) {
+            if (person.getPersonId().equals(id)) {
+                return person;
+            }
+        }
+        return null;
     }
-    public List<Person> findByEmail(String email) {
-        return persons.stream().filter(person -> person.getEmail().equals(email)).collect(Collectors.toList());
+    @Override
+    public Person findByEmail(String email) {
+        for (Person person : persons) {
+            if (person.getEmail().equals(email)) {
+                return person;
+            }
+        }
+        return null;
     }
-    public List<Person> findByCourse(Integer CourseId) {
-        return persons.stream().filter(person -> person.getCourseId().equals(courseId)).collect(Collectors.toList());
+    @Override
+    public List<Person> findByCourse(Integer courseId) {
+        List<Person> result = new ArrayList<>();
+        for (Person person : persons) {
+            if (person.getCourseId().equals(courseId)) {
+                result.add(person);
+            }
+        }
+        return result.isEmpty() ? null : result;
     }
+    @Override
     public List<Person> findByAccessType(String accessType) {
-        return persons.stream().filter(person -> person.getAccessType().equals(accessType)).collect(Collectors.toList());
+        List<Person> result = new ArrayList<>();
+        for (Person person : persons) {
+            if (person.getAccessType().equals(accessType)) {
+                result.add(person);
+            }
+        }
+        return result.isEmpty() ? null : result;
     }
+    public int add(Person person) {
+        if (person.getPersonId() == 0) {
+            person.setId(idGenerator++);
+        }
+        persons.add(person);
+        return person.getPersonId();
+    }
+
 }
 
