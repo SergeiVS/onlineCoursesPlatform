@@ -2,7 +2,6 @@ package repository;
 
 import org.springframework.stereotype.Repository;
 
-import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +11,6 @@ public class CoursesRepository<Course> implements Repository<Course> {
 
     public CoursesRepository() {
         this.course = new ArrayList<>();
-
     }
     @Override
     public int idGenerator() {
