@@ -9,6 +9,7 @@ import services.validation.exeptions.NullException;
 import services.validation.exeptions.NumberException;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.List;
 
 public class AddCourseDtoValidation implements ValidationInterface<AddChangeCourseDto> {
@@ -25,14 +26,7 @@ public class AddCourseDtoValidation implements ValidationInterface<AddChangeCour
                 errors.add(new ErrorsDto(ErrorCoding.E_404, "The course material file address is not correct"));
                 isValid = false;
             }
-        } catch (FileReadingException e) {
-            errors.add(new ErrorsDto(ErrorCoding.E_404, "No such file exist"));
-            isValid = false;
-
-        } catch (NumberException e) {
-            errors.add(new ErrorsDto(ErrorCoding.E_400, "wrong number format"));
-            isValid = false;
-        } catch (NullException e) {
+        } catch (RuntimeException e) {
             errors.add(new ErrorsDto(ErrorCoding.E_400, e.getMessage()));
             isValid = false;
         }
