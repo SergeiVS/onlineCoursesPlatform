@@ -6,7 +6,7 @@ import core.dto.requests.PersonForChangeDto;
 import services.validation.exeptions.NullException;
 
 import java.util.List;
-
+// проверяет входные данные пользователя на нуль, на наличие информации в полях, на Исключения.
 public class PersonForChangeValidation implements ValidationInterface<PersonForChangeDto> {
     @Override
     public boolean validate(PersonForChangeDto personForChangeDto, List<ErrorsDto> errors) {

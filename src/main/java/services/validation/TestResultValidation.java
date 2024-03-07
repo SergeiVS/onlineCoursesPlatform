@@ -6,7 +6,8 @@ import core.dto.requests.TestResultDto;
 import services.validation.exeptions.NullException;
 
 import java.util.List;
-
+// проверяет входные данные нового пользователя на нуль, на наличие информации в полях, на соответствие
+// длинны списка ответов количеству вопросов, на Исключения.
 public class TestResultValidation implements ValidationInterface<TestResultDto> {
 
     boolean isValid = true;

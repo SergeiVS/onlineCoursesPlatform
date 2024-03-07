@@ -7,7 +7,7 @@ import services.validation.exeptions.NullException;
 import services.validation.exeptions.NumberException;
 
 import java.util.List;
-
+// Проверяет входящее числовое значение на нуль
 public class IntegerRequestValidation implements ValidationInterface<Request<Integer>> {
     @Override
     public boolean validate(Request<Integer> request, List<ErrorsDto> errors) {

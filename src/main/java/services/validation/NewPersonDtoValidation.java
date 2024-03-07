@@ -6,7 +6,7 @@ import core.dto.requests.NewPersonDto;
 import services.validation.exeptions.NullException;
 
 import java.util.List;
-
+// проверяет входные данные нового пользователя на нуль, на наличие информации в полях, на Исключения.
 public class NewPersonDtoValidation implements ValidationInterface<NewPersonDto> {
     EmailFormatValidation emailValidation = new EmailFormatValidation();
 

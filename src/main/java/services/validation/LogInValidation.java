@@ -6,7 +6,7 @@ import core.dto.requests.LogInDto;
 import services.validation.exeptions.NullException;
 
 import java.util.List;
-
+//Проверяет входящий логин на соответствие формату емайла, на наличие информации, на исключения
 public class LogInValidation implements ValidationInterface<LogInDto> {
     EmailFormatValidation emailValidation = new EmailFormatValidation();
 

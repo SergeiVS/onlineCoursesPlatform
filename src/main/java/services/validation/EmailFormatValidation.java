@@ -10,12 +10,12 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
-
+// проверяет входящую строку на соответствие формату емайла, на наличие информации, на Исключения
 public class EmailFormatValidation implements ValidationInterface<String> {
     @Override
     public boolean validate(String string, List<ErrorsDto> errors) {
 
-        boolean result;
+        boolean result = true;
 
         try {
             if (string == null) {
