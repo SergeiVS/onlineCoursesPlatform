@@ -10,7 +10,7 @@ public class Response <T> {
     private final T response;
     private final List<ErrorCoding> errors;
 
-    public Response(T response) {
+    public Response(T response, List<ErrorCoding> errors) {
         this.response = response;
         this.errors = errors;
     }

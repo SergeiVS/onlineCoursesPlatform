@@ -24,7 +24,7 @@ public class TestingService {
         List<Test> testsOfCourse = tests.findTestsByCourseId(courseId);
         Test nextTest = testsOfCourse.get(lastGrade);
         String nextTestName = nextTest.getTestName();
-        return new Response<>(new ResponseTestForPassing(nextTestName));
+        return new Response<>(new ResponseTestForPassing(nextTestName,));
 
     }
 
