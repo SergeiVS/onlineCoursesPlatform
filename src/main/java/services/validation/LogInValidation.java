@@ -3,7 +3,7 @@ package services.validation;
 import core.dto.errors.ErrorCoding;
 import core.dto.errors.ErrorsDto;
 import core.dto.requests.LogInDto;
-import services.validation.exeptions.NullException;
+
 
 import java.util.List;
 //Проверяет входящий логин на соответствие формату емайла, на наличие информации, на исключения
@@ -30,7 +30,7 @@ public class LogInValidation implements ValidationInterface<LogInDto> {
                 isValid = false;
             }
 
-        } catch (NumberFormatException | NullException e) {
+        } catch (RuntimeException e) {
             errors.add(new ErrorsDto(ErrorCoding.E_400, e.getMessage()));
             isValid = false;
         }

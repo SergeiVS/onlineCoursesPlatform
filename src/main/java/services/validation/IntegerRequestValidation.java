@@ -3,8 +3,8 @@ package services.validation;
 import core.dto.errors.ErrorCoding;
 import core.dto.errors.ErrorsDto;
 import core.dto.requests.Request;
-import services.validation.exeptions.NullException;
-import services.validation.exeptions.NumberException;
+
+
 
 import java.util.List;
 // Проверяет входящее числовое значение на нуль
@@ -20,8 +20,7 @@ public class IntegerRequestValidation implements ValidationInterface<Request<Int
             }
             int i = request.getRequest();
 
-        } catch (NumberException | NullException e) {
-
+        } catch (RuntimeException e) {
             errors.add(new ErrorsDto(ErrorCoding.E_400, e.getMessage()));
             isValid = false;
 

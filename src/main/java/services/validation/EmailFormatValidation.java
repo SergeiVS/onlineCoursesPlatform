@@ -3,7 +3,7 @@ package services.validation;
 import core.dto.errors.ErrorCoding;
 import core.dto.errors.ErrorsDto;
 import services.validation.ValidationInterface;
-import services.validation.exeptions.NullException;
+
 
 import java.io.IOException;
 import java.util.List;
@@ -33,12 +33,11 @@ public class EmailFormatValidation implements ValidationInterface<String> {
             errors.add(new ErrorsDto(ErrorCoding.E_400, "Email validation failed"));
             return false;
 
-        } catch (NullException e) {
-            errors.add(new ErrorsDto(ErrorCoding.E_400, "Request is null"));
+        } catch (RuntimeException e) {
+            errors.add(new ErrorsDto(ErrorCoding.E_400, e.getMessage()));
             return false;
         }
         if (!result) {
-
             errors.add(new ErrorsDto(ErrorCoding.E_401, "Email format is not valid"));
         }
         return result;

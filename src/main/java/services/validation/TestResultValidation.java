@@ -3,7 +3,7 @@ package services.validation;
 import core.dto.errors.ErrorCoding;
 import core.dto.errors.ErrorsDto;
 import core.dto.requests.TestResultDto;
-import services.validation.exeptions.NullException;
+
 
 import java.util.List;
 // проверяет входные данные нового пользователя на нуль, на наличие информации в полях, на соответствие
@@ -36,7 +36,7 @@ public class TestResultValidation implements ValidationInterface<TestResultDto> 
                 isValid = false;
             }
 
-        }catch (NumberFormatException | NullException e) {
+        }catch (RuntimeException e) {
             errors.add(new ErrorsDto(ErrorCoding.E_400, e.getMessage()));
             isValid = false;
         }

@@ -1,8 +1,6 @@
 package services.Utils.fileReder;
 
-import services.validation.exeptions.FileReadingException;
-import services.validation.exeptions.NullException;
-import services.validation.exeptions.NumberException;
+
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -26,7 +24,7 @@ public class ReadPassesFromFile implements ReadFromFile<Map<Integer, Integer>> {
                 passes.put(Integer.parseInt(strings[0].trim()), Integer.parseInt(strings[1].trim()));
             }
 
-        } catch (FileReadingException | NumberException | NullException e) {
+        } catch (RuntimeException e) {
             System.out.println(e.getMessage());
         } catch (IOException e) {
             System.out.println("Input output failed");
