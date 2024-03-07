@@ -14,7 +14,10 @@ public class LogInValidation implements ValidationInterface<LogInDto> {
     public boolean validate(LogInDto logInDto, List<ErrorsDto> errors) {
         boolean isValid = true;
         try {
-
+            if (logInDto == null) {
+                errors.add(new ErrorsDto(ErrorCoding.E_400, "request can not be null"));
+                return false;
+            }
             String email = logInDto.geteMail();
             Integer passHash = logInDto.getPasswordHash();
 

@@ -12,6 +12,11 @@ public class PersonForChangeValidation implements ValidationInterface<PersonForC
     public boolean validate(PersonForChangeDto personForChangeDto, List<ErrorsDto> errors) {
         boolean isValid = true;
         try {
+            if (personForChangeDto == null) {
+                errors.add(new ErrorsDto(ErrorCoding.E_400, "request can not be null"));
+                return false;
+            }
+
             Integer personId = personForChangeDto.getPersonId();
             Integer courseId = personForChangeDto.getCourseId();
             String accessType = personForChangeDto.getAccessType();

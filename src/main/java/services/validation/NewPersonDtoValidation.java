@@ -14,6 +14,10 @@ public class NewPersonDtoValidation implements ValidationInterface<NewPersonDto>
     public boolean validate(NewPersonDto newPersonDto, List<ErrorsDto> errors) {
         boolean isValid = true;
         try {
+            if (newPersonDto == null) {
+                errors.add(new ErrorsDto(ErrorCoding.E_400, "request can not be null"));
+                return false;
+            }
             String fName = newPersonDto.getFirstName();
             String lName = newPersonDto.getLastName();
             String email = newPersonDto.geteMail();

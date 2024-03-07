@@ -18,6 +18,10 @@ public class EmailFormatValidation implements ValidationInterface<String> {
         boolean result;
 
         try {
+            if (string == null) {
+                errors.add(new ErrorsDto(ErrorCoding.E_400, "request can not be null"));
+                return false;
+            }
 
             String regex = "^[A-Za-z0-9+._-]+@(.+)$";
             Pattern pattern = Pattern.compile(regex);
