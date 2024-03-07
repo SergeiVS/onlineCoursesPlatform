@@ -1,0 +1,7 @@
+##
+person_id = 11
+first_name = John
+last_name = Dow
+email = john@dow.ee
+course_id = 0
+access_type = admin
