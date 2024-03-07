@@ -28,6 +28,10 @@ public class Test {
         return testName;
     }
 
+    public Integer getCourseId() {
+        return courseId;
+    }
+
     public boolean isActive() {
         return isActive;
     }
