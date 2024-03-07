@@ -43,3 +43,4 @@ public class PersonRepository implements Repository<Person> {
         return persons.stream().filter(person -> person.getAccessType().equals(accessType)).collect(Collectors.toList());
     }
 }
+
