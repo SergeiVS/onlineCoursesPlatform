@@ -1,5 +1,7 @@
 package core.dto.responses;
 
+import core.entity.Test;
+
 import java.util.ArrayList;
 import java.util.List;
 
