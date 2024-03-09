@@ -1,8 +1,6 @@
 package services.Utils.fileReder;
 
-import services.validation.exeptions.FileReadingException;
-import services.validation.exeptions.NullException;
-import services.validation.exeptions.NumberException;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -35,7 +33,7 @@ try {
             courseMaterial.add(readLine);
         }
         // здесь обрабатываются возможные исключения.
-    } catch (FileReadingException | NumberException | NullException e) {
+    } catch (RuntimeException e) {
     System.out.println(e.getMessage());
     } catch (IOException e) {
         System.out.println("Input output failed");

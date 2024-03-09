@@ -1,9 +1,7 @@
 package services.Utils.fileReder;
 
 import core.entity.Test;
-import services.validation.exeptions.FileReadingException;
-import services.validation.exeptions.NullException;
-import services.validation.exeptions.NumberException;
+
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -50,7 +48,7 @@ public class ReadTestFromFile implements ReadFromFile<Test> {
 
             reader.close();
 
-        } catch (FileReadingException | NumberException | NullException e) {
+        } catch (RuntimeException e) {
             System.out.println(e.getMessage());
         } catch (IOException e) {
             System.out.println("Input output failed");

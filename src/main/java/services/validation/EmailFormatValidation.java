@@ -3,21 +3,25 @@ package services.validation;
 import core.dto.errors.ErrorCoding;
 import core.dto.errors.ErrorsDto;
 import services.validation.ValidationInterface;
-import services.validation.exeptions.NullException;
+
 
 import java.io.IOException;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
-
+// проверяет входящую строку на соответствие формату емайла, на наличие информации, на Исключения
 public class EmailFormatValidation implements ValidationInterface<String> {
     @Override
     public boolean validate(String string, List<ErrorsDto> errors) {
 
-        boolean result;
+        boolean result = true;
 
         try {
+            if (string == null) {
+                errors.add(new ErrorsDto(ErrorCoding.E_400, "request can not be null"));
+                return false;
+            }
 
             String regex = "^[A-Za-z0-9+._-]+@(.+)$";
             Pattern pattern = Pattern.compile(regex);
@@ -29,15 +33,11 @@ public class EmailFormatValidation implements ValidationInterface<String> {
             errors.add(new ErrorsDto(ErrorCoding.E_400, "Email validation failed"));
             return false;
 
-        } catch (NullException e) {
-            errors.add(new ErrorsDto(ErrorCoding.E_400, "Request is null"));
+        } catch (RuntimeException e) {
+            errors.add(new ErrorsDto(ErrorCoding.E_400, e.getMessage()));
             return false;
         }
-        if (result) {
-            errors.add(new ErrorsDto(ErrorCoding.E_200, "Email is valid"));
-
-        } else {
-
+        if (!result) {
             errors.add(new ErrorsDto(ErrorCoding.E_401, "Email format is not valid"));
         }
         return result;
