@@ -14,8 +14,11 @@ public class Course {
         return courseId;
     }
 
-    public void setCourseId(Integer courseId) {
+    public Course(Integer courseId, String courseName, boolean isActive, List<String> material) {
         this.courseId = courseId;
+        this.courseName = courseName;
+        this.isActive = isActive;
+        this.material = material;
     }
 
     public String getCourseName() {

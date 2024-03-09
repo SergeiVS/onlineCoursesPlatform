@@ -12,12 +12,12 @@ public class PersonRepository implements RepositoryInterface<Person> {
     public PersonRepository() {
         this.persons = new ArrayList<>();
     }
-
+// возвращает все записи в базе данных
     @Override
     public List<Person> findAll() {
         return persons;
     }
-
+// поиск по фамилии. возвращается список пользователей с такой фамилией
     @Override
     public List<Person> findByName(String lastName) {
         List<Person> result = new ArrayList<>();
@@ -28,7 +28,7 @@ public class PersonRepository implements RepositoryInterface<Person> {
         }
         return result;
     }
-
+//поиск по ИД
     @Override
     public Person findById(Integer id) {
         for (Person person : persons) {
@@ -38,7 +38,7 @@ public class PersonRepository implements RepositoryInterface<Person> {
         }
         return null;
     }
-
+// поиск по емайлу.
     public Person findByEmail(String email) {
         for (Person person : persons) {
             if (person.getEmail().equals(email)) {
@@ -67,16 +67,26 @@ public class PersonRepository implements RepositoryInterface<Person> {
         }
         return result.isEmpty() ? null : result;
     }
-
+//Получает на вход нового пользователя, проверяет его ИД, если оно 0 вызывает генератор ИД.
+// Проверяет наличие такого ИД в базе. Если такой находится записывает в него параметры доступа и ИД курса.
+// Если такого нет, то создаётся новый объект Персон с полученными данными. Возвращается ИД персоны
     public Integer add(Person person) {
+
         int personId = (person.getPersonId() == 0) ? idGenerate() : person.getPersonId();
         String fName = person.getFirstName();
         String lName = person.getLastName();
         String email = person.getEmail();
         int courseId = person.getCourseId();
         String accessType = person.getAccessType();
+        var personForFind = findById(personId);
 
-        persons.add(new Person(personId, fName, lName, email, courseId, accessType));
+        if (personForFind != null) {
+            personForFind.setCourseId(courseId);
+            personForFind.setAccessType(accessType);
+
+        } else {
+            persons.add(new Person(personId, fName, lName, email, courseId, accessType));
+        }
         return personId;
     }
 
