@@ -8,13 +8,16 @@ import java.util.List;
 public class PersonRepository implements RepositoryInterface<Person> {
     private List<Person> persons;
     private int idGenerator = 30;
+
     public PersonRepository() {
         this.persons = new ArrayList<>();
     }
+
     @Override
     public List<Person> findAll() {
-        return new ArrayList<>(persons);
+        return persons;
     }
+
     @Override
     public List<Person> findByName(String lastName) {
         List<Person> result = new ArrayList<>();
@@ -23,8 +26,9 @@ public class PersonRepository implements RepositoryInterface<Person> {
                 result.add(person);
             }
         }
-        return result.isEmpty() ? null : result;
+        return result;
     }
+
     @Override
     public Person findById(Integer id) {
         for (Person person : persons) {
@@ -34,7 +38,7 @@ public class PersonRepository implements RepositoryInterface<Person> {
         }
         return null;
     }
-    @Override
+
     public Person findByEmail(String email) {
         for (Person person : persons) {
             if (person.getEmail().equals(email)) {
@@ -43,7 +47,7 @@ public class PersonRepository implements RepositoryInterface<Person> {
         }
         return null;
     }
-    @Override
+
     public List<Person> findByCourse(Integer courseId) {
         List<Person> result = new ArrayList<>();
         for (Person person : persons) {
@@ -51,9 +55,9 @@ public class PersonRepository implements RepositoryInterface<Person> {
                 result.add(person);
             }
         }
-        return result.isEmpty() ? null : result;
+        return result;
     }
-    @Override
+
     public List<Person> findByAccessType(String accessType) {
         List<Person> result = new ArrayList<>();
         for (Person person : persons) {
@@ -63,12 +67,21 @@ public class PersonRepository implements RepositoryInterface<Person> {
         }
         return result.isEmpty() ? null : result;
     }
-    public int add(Person person) {
-        if (person.getPersonId() == 0) {
-            person.setId(idGenerator++);
-        }
-        persons.add(person);
-        return person.getPersonId();
+
+    public Integer add(Person person) {
+        int personId = (person.getPersonId() == 0) ? idGenerate() : person.getPersonId();
+        String fName = person.getFirstName();
+        String lName = person.getLastName();
+        String email = person.getEmail();
+        int courseId = person.getCourseId();
+        String accessType = person.getAccessType();
+
+        persons.add(new Person(personId, fName, lName, email, courseId, accessType));
+        return personId;
+    }
+
+    private int idGenerate() {
+        return idGenerator++;
     }
 
 }
