@@ -9,8 +9,8 @@ public class PersonRepository implements RepositoryInterface<Person> {
     private List<Person> persons;
     private int idGenerator = 30;
 
-    public PersonRepository() {
-        this.persons = new ArrayList<>();
+    public PersonRepository(List<Person> persons) {
+        this.persons = persons;
     }
 // возвращает все записи в базе данных
     @Override

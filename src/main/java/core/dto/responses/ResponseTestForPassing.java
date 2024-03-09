@@ -1,16 +1,17 @@
 package core.dto.responses;
 
-import core.entity.Test;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class ResponseTestForPassing {
     private final String testName;
-    private final List<ResponseQuestion> questions = new ArrayList<>();
+    private final List<ResponseQuestion> questions;
 
-    public ResponseTestForPassing(String testName) {
+
+
+    public ResponseTestForPassing(String testName, List<ResponseQuestion> responseQuestions, List<ResponseQuestion> questions) {
         this.testName = testName;
+
+        this.questions = questions;
     }
 
     public String getTestName() {
