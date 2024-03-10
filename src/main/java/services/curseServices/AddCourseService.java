@@ -1,4 +1,4 @@
-package services.CourseServices;
+package services.curseServices;
 
 import core.dto.errors.ErrorCoding;
 import core.dto.errors.ErrorsDto;
@@ -8,7 +8,7 @@ import core.dto.responses.Response;
 import core.dto.responses.ResponseCourse;
 import core.entity.Course;
 import repository.CoursesRepository;
-import services.Utils.fileReder.ReadCourseFromFile;
+import services.utils.fileReder.ReadCourseFromFile;
 import services.validation.AddCourseDtoValidation;
 
 import java.io.IOException;

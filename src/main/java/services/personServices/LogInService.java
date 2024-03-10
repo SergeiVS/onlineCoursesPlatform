@@ -1,4 +1,4 @@
-package services.PersonServices;
+package services.personServices;
 
 import core.dto.errors.ErrorCoding;
 import core.dto.errors.ErrorsDto;
@@ -9,6 +9,7 @@ import core.dto.responses.ResponsePerson;
 import core.entity.Person;
 import repository.Passwords;
 import repository.PersonRepository;
+import services.utils.converters.Converters;
 import services.validation.LogInValidation;
 
 import java.util.ArrayList;
@@ -46,7 +47,7 @@ public class LogInService {
         if (isAccepted) {
             Person foundPerson = persons.findByEmail(email);
             if (foundPerson != null) {
-                responsePerson = PersonToDtoConverter(foundPerson);
+                responsePerson = Converters.PersonToDtoConverter(foundPerson);
                 errors.add(new ErrorsDto(ErrorCoding.E_200, "Access alloyed"));
 
             } else {
@@ -59,16 +60,5 @@ public class LogInService {
             errors.add(new ErrorsDto(ErrorCoding.E_400, "Incoming data is not correct"));
         }
         return new Response<ResponsePerson>(responsePerson, errors);
-    }
-// Конвертирует данные пользователя в формат ответа на запрос
-    private static ResponsePerson PersonToDtoConverter(Person foundPerson) {
-
-        var id = foundPerson.getPersonId();
-        var fName = foundPerson.getFirstName();
-        var lName = foundPerson.getLastName();
-        var courseId = foundPerson.getCourseId();
-        var access = foundPerson.getAccessType();
-
-        return new ResponsePerson(id, fName, lName, courseId, access);
     }
 }

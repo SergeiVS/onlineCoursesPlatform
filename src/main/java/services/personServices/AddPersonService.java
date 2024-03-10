@@ -1,4 +1,4 @@
-package services.PersonServices;
+package services.personServices;
 
 import core.dto.errors.ErrorCoding;
 import core.dto.errors.ErrorsDto;
@@ -9,8 +9,9 @@ import core.dto.responses.ResponsePerson;
 import core.entity.Person;
 import repository.Passwords;
 import repository.PersonRepository;
-import services.Utils.fileWriter.AddPasswordToIntoFile;
-import services.Utils.fileWriter.AddPersonIntoFile;
+import services.utils.converters.Converters;
+import services.utils.fileWriter.AddPasswordToIntoFile;
+import services.utils.fileWriter.AddPersonIntoFile;
 import services.validation.NewPersonDtoValidation;
 import services.validation.UniqueEmailValidation;
 
@@ -69,13 +70,13 @@ public class AddPersonService {
                     personId = personRepository.add(newPerson);
                     passwords.getPasswords().put(email.hashCode(), passHash);
                     errors.add(new ErrorsDto(ErrorCoding.E_201, "Person added"));
-                    person = new ResponsePerson(personId, fName, lName, courseId, "is_student");
+                    person = Converters.PersonToDtoConverter(newPerson);
                 } else {
                     newPerson = new Person(0, fName, lName, email);
                     personId = personRepository.add(newPerson);
                     passwords.getPasswords().put(email.hashCode(), passHash);
                     errors.add(new ErrorsDto(ErrorCoding.E_201, "Person added without association with any course"));
-                    person = new ResponsePerson(personId, fName, lName, 0, "");
+                    person = Converters.PersonToDtoConverter(newPerson);
                 }
                 //если данные не прошли проверку то добавление нового пользователя не происходит.
             } else {

@@ -9,9 +9,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import repository.Passwords;
 import repository.PersonRepository;
-import services.PersonServices.LogInService;
-import services.Utils.fileReder.ReadPassesFromFile;
-import services.Utils.fileReder.ReadPersonDatabaseFromFile;
+import services.personServices.LogInService;
+import services.utils.fileReder.ReadPassesFromFile;
+import services.utils.fileReder.ReadPersonDatabaseFromFile;
 
 import java.io.IOException;
 import java.util.ArrayList;

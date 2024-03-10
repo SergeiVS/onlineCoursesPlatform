@@ -1,4 +1,4 @@
-package services.PersonServices;
+package services.personServices;
 
 import core.dto.errors.ErrorsDto;
 import core.dto.requests.PersonForChangeDto;
