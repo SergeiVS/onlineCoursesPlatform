@@ -8,6 +8,8 @@ import core.dto.responses.ResponsePerson;
 import core.entity.Person;
 import repository.PersonRepository;
 import services.utils.converters.Converters;
+import services.validation.IntegerRequestValidation;
+import services.validation.StringRequestValidation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,13 +46,21 @@ public class FindPersonService {
         return new Response<>(personsForReturn, errors);
     }
 
-    public Response<ResponsePerson> findById(Request<Integer> courseId){
+    public Response<ResponsePerson> findById(Request<Integer> personId) {
         List<ErrorsDto> errors = new ArrayList<>();
         ResponsePerson personForReturn = null;
+        IntegerRequestValidation validation = new IntegerRequestValidation();
+        boolean isValid = false;
+        Person foundPerson = null;
 
         try {
-            Person foundPerson = personRepository.findById(courseId.getRequest());
-            personForReturn = Converters.personToResponseConverter(foundPerson);
+            isValid = validation.validate(personId, errors);
+
+            if (isValid) {
+                foundPerson = personRepository.findById(personId.getRequest());
+                personForReturn = Converters.personToResponseConverter(foundPerson);
+            }
+
             if (foundPerson == null) {
                 errors.add(new ErrorsDto(ErrorCoding.E_404, "User did not found"));
             } else {
@@ -64,19 +74,26 @@ public class FindPersonService {
     }
 
 
-    public Response<List<ResponsePerson>> findByName(String lastName) {
+    public Response<List<ResponsePerson>> findByName(Request<String> lastName) {
 
         List<ErrorsDto> errors = new ArrayList<>();
         List<ResponsePerson> personsForReturn = new ArrayList<>();
+        StringRequestValidation validation = new StringRequestValidation();
+        boolean isValid = false;
+        List<Person> foundPersons = new ArrayList<>();
 
         try {
-            List<Person> foundPersons = personRepository.findByName(lastName);
+            isValid = validation.validate(lastName, errors);
 
-           personsForReturn = foundPersons.stream()
-                   .filter(person -> person.getLastName().equals(lastName))
-                   .map(Converters::personToResponseConverter)
-                   .collect(Collectors.toList());
-
+            if (isValid) {
+                foundPersons = personRepository.findByName(lastName.getRequest());
+            }
+            if (!foundPersons.isEmpty()) {
+                personsForReturn = foundPersons.stream()
+                        .filter(person -> person.getLastName().equals(lastName.getRequest()))
+                        .map(Converters::personToResponseConverter)
+                        .collect(Collectors.toList());
+            }
             if (personsForReturn.isEmpty()) {
                 errors.add(new ErrorsDto(ErrorCoding.E_404, "Database did not found"));
             } else {
