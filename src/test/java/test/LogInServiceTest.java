@@ -41,17 +41,27 @@ public class LogInServiceTest {
             e.printStackTrace();
         }
     }
-
+// Тестируется генерация ответа на запрос.
     @Test
     void logIn() {
         LogInService service = new LogInService(persons, passwords);
-//        List<ErrorsDto> errors = new ArrayList<>();
-//        errors.add(new ErrorsDto(ErrorCoding.E_200, "Access alloyed"));
+        List<ErrorsDto> errors = new ArrayList<>();
+       errors.add(new ErrorsDto(ErrorCoding.E_200, "Access alloyed"));
         ResponsePerson expectedPerson;
         expectedPerson = (new ResponsePerson(11, "John", "Dow", 0, "admin"));
         LogInDto dto = new LogInDto("john@dow.ee", 1537139031);
         Request<LogInDto> logInDto = new Request<>(dto);
         ResponsePerson actualPerson = service.logIn(logInDto).getResponse();
         assertEquals(expectedPerson, actualPerson);
+    }
+    @Test
+    void logInErrors() {
+        LogInService service = new LogInService(persons, passwords);
+        List<ErrorsDto> expextedErrors = new ArrayList<>();
+        expextedErrors.add(new ErrorsDto(ErrorCoding.E_200, "Access alloyed"));
+        LogInDto dto = new LogInDto("john@dow.ee", 1537139031);
+        Request<LogInDto> logInDto = new Request<>(dto);
+        List<ErrorsDto> actualErrors = service.logIn(logInDto).getErrors();
+        assertEquals(expextedErrors, actualErrors);
     }
 }

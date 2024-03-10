@@ -28,10 +28,14 @@ public class LogInService {
     public Response<ResponsePerson> logIn(Request<LogInDto> dto) {
         LogInValidation validation = new LogInValidation();
         List<ErrorsDto> errors = new ArrayList<>();
+        ResponsePerson responsePerson = null;
+
+        try {
+
         var email = dto.getRequest().geteMail();
         var passwordHash = dto.getRequest().getPasswordHash();
         boolean isAccepted = false;
-        ResponsePerson responsePerson = null;
+
 
         if (validation.validate(dto.getRequest(), errors)) {
             isAccepted = passwords.verifyPass(email.hashCode(), passwordHash);
@@ -50,7 +54,11 @@ public class LogInService {
                 return new Response<ResponsePerson>(null, errors);
             }
         }
-            return new Response<ResponsePerson>(responsePerson, errors);
+    }  catch (RuntimeException e) {
+            e.printStackTrace();
+            errors.add(new ErrorsDto(ErrorCoding.E_400, "Incoming data is not correct"));
+        }
+        return new Response<ResponsePerson>(responsePerson, errors);
     }
 // Конвертирует данные пользователя в формат ответа на запрос
     private static ResponsePerson PersonToDtoConverter(Person foundPerson) {
