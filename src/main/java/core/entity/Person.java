@@ -13,6 +13,12 @@ public class Person {
     private Integer courseId;
     private String accessType;
 
+    public Person(Integer personId, Integer courseId, String accessType) {
+        this.personId =personId;
+        this.courseId = courseId;
+        this.accessType = accessType;
+    }
+
     public Person(Integer personId, String firstName, String lastName, String email) {
         this.personId = personId;
         this.firstName = firstName;

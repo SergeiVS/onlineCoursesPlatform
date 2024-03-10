@@ -17,7 +17,7 @@ import services.validation.UniqueEmailValidation;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddChangePerson {
+public class AddPerson {
 
     private final PersonRepository personRepository;
     private final Passwords passwords;
@@ -25,9 +25,9 @@ public class AddChangePerson {
     private final AddPasswordToIntoFile passwordIntoFile;
 
 
-    public AddChangePerson(PersonRepository personRepository, Passwords passwords,
-                           AddPersonIntoFile addPersonIntoFile,
-                           AddPasswordToIntoFile passwordIntoFile) {
+    public AddPerson(PersonRepository personRepository, Passwords passwords,
+                     AddPersonIntoFile addPersonIntoFile,
+                     AddPasswordToIntoFile passwordIntoFile) {
         this.personRepository = personRepository;
         this.passwords = passwords;
         this.addPersonIntoFile = addPersonIntoFile;
