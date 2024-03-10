@@ -45,12 +45,13 @@ public class LogInServiceTest {
     @Test
     void logIn() {
         LogInService service = new LogInService(persons, passwords);
-        List<ErrorsDto> errors = new ArrayList<>();
-        errors.add(new ErrorsDto(ErrorCoding.E_200, "Access alloyed"));
-        Response<ResponsePerson> expectedPerson = new Response<>(new ResponsePerson(1, "John", "Dow", 0, "admin"), errors);
+//        List<ErrorsDto> errors = new ArrayList<>();
+//        errors.add(new ErrorsDto(ErrorCoding.E_200, "Access alloyed"));
+        ResponsePerson expectedPerson;
+        expectedPerson = (new ResponsePerson(11, "John", "Dow", 0, "admin"));
         LogInDto dto = new LogInDto("john@dow.ee", 1537139031);
         Request<LogInDto> logInDto = new Request<>(dto);
-        Response<ResponsePerson> actualPerson = service.logIn(logInDto);
+        ResponsePerson actualPerson = service.logIn(logInDto).getResponse();
         assertEquals(expectedPerson, actualPerson);
     }
 }

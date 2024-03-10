@@ -1,5 +1,7 @@
 package core.dto.responses;
 
+import java.util.Objects;
+
 // возвращается пользователю на добавление, изменение и поиск отдельно или объектом Списка.
 public class ResponsePerson {
 
@@ -38,6 +40,20 @@ public class ResponsePerson {
     public String getAccessType() {
         return accessType;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ResponsePerson that = (ResponsePerson) o;
+        return Objects.equals(getPersonId(), that.getPersonId()) && Objects.equals(getFirstName(), that.getFirstName()) && Objects.equals(getLastName(), that.getLastName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getPersonId(), getFirstName(), getLastName());
+    }
+
     @Override
     public String toString() {
         return "ResponsePerson{" +
