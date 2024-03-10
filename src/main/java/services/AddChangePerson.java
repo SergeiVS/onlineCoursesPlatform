@@ -33,15 +33,18 @@ public class AddChangePerson {
         this.addPersonIntoFile = addPersonIntoFile;
         this.passwordIntoFile = passwordIntoFile;
     }
-// Добавляет нового пользователя
-// на входе метод получает NewPersonDto где может быть не указан ид выбранного курса
-    public Response<ResponsePerson> addPerson(Request<NewPersonDto> dtoRequest){
 
+    // Добавляет нового пользователя
+// на входе метод получает NewPersonDto где может быть не указан ид выбранного курса
+    public Response<ResponsePerson> addPerson(Request<NewPersonDto> dtoRequest) {
+
+        ResponsePerson personForReturn;
         NewPersonDtoValidation dtoValidation = new NewPersonDtoValidation();
         UniqueEmailValidation emailValidation = new UniqueEmailValidation(personRepository);
         List<ErrorsDto> errors = new ArrayList<>();
         ResponsePerson person = null;
         boolean isValid = false;
+        int personId;
 
         try {
             var request = dtoRequest.getRequest();
@@ -52,31 +55,37 @@ public class AddChangePerson {
             var passHash = request.getPasswordHash();
             //
             //Валидация входящих данных
-             isValid = dtoValidation.validate(request, errors);
+            isValid = dtoValidation.validate(request, errors);
             Person newPerson;
             // Если переданный емайл уже имеется в базе данных, то новый пользователь не добавляется.
-            if (!emailValidation.validate(email, errors)){
+            if (!emailValidation.validate(email, errors)) {
                 return new Response<ResponsePerson>(null, errors);
             }
-         // Если входные данные валидны создаётся новый пользователь с полными или неполными данными.
-        if (isValid){
-            if (courseId > 0) {
-                newPerson = new Person(0, fName, lName, email, courseId, "is_student");
-                passwords.getPasswords().put(email.hashCode(), passHash);
-                errors.add(new ErrorsDto(ErrorCoding.E_201, "Person added"));
-            }else {
-                newPerson = new Person(0, fName, lName, email);
-                passwords.getPasswords().put(email.hashCode(), passHash);
-                errors.add(new ErrorsDto(ErrorCoding.E_201, "Person added without association with any course"));
+            // Если входные данные валидны создаётся новый пользователь с полными или неполными данными.
+            if (isValid) {
+                if (courseId > 0) {
+
+                    newPerson = new Person(0, fName, lName, email, courseId, "is_student");
+                    personId = personRepository.add(newPerson);
+                    passwords.getPasswords().put(email.hashCode(), passHash);
+                    errors.add(new ErrorsDto(ErrorCoding.E_201, "Person added"));
+                    person = new ResponsePerson(personId, fName, lName, courseId, "is_student");
+                } else {
+                    newPerson = new Person(0, fName, lName, email);
+                    personId = personRepository.add(newPerson);
+                    passwords.getPasswords().put(email.hashCode(), passHash);
+                    errors.add(new ErrorsDto(ErrorCoding.E_201, "Person added without association with any course"));
+                    person = new ResponsePerson(personId, fName, lName, 0, "");
+                }
+                //если данные не прошли проверку то добавление нового пользователя не происходит.
+            } else {
+                return new Response<ResponsePerson>(null, errors);
             }
-            //если данные не прошли проверку то добавление нового пользователя не происходит.
-        }else {
-            return new Response<ResponsePerson>(null, errors);
+
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            errors.add(new ErrorsDto(ErrorCoding.E_400, "Incoming data is not correct"));
         }
-    }catch (RuntimeException e){
-        e.printStackTrace();
-        errors.add(new ErrorsDto(ErrorCoding.E_400, "Incoming data is not correct"));
-    }
-return new Response<ResponsePerson>(person, errors);
+        return new Response<ResponsePerson>(person, errors);
     }
 }
