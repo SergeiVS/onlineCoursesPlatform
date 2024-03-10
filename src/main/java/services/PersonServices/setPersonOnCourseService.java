@@ -1,4 +1,4 @@
-package services;
+package services.PersonServices;
 
 import core.dto.errors.ErrorsDto;
 import core.dto.requests.PersonForChangeDto;
@@ -14,10 +14,10 @@ import java.util.List;
 import static core.dto.errors.ErrorCoding.E_200;
 import static core.dto.errors.ErrorCoding.E_400;
 
-public class setPersonOnCourse {
+public class setPersonOnCourseService {
     private final PersonRepository personRepository;
 
-    public setPersonOnCourse(PersonRepository personRepository) {
+    public setPersonOnCourseService(PersonRepository personRepository) {
         this.personRepository = personRepository;
     }
 

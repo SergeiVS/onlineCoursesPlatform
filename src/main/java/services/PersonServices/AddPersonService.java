@@ -1,4 +1,4 @@
-package services;
+package services.PersonServices;
 
 import core.dto.errors.ErrorCoding;
 import core.dto.errors.ErrorsDto;
@@ -17,7 +17,7 @@ import services.validation.UniqueEmailValidation;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddPerson {
+public class AddPersonService {
 
     private final PersonRepository personRepository;
     private final Passwords passwords;
@@ -25,9 +25,9 @@ public class AddPerson {
     private final AddPasswordToIntoFile passwordIntoFile;
 
 
-    public AddPerson(PersonRepository personRepository, Passwords passwords,
-                     AddPersonIntoFile addPersonIntoFile,
-                     AddPasswordToIntoFile passwordIntoFile) {
+    public AddPersonService(PersonRepository personRepository, Passwords passwords,
+                            AddPersonIntoFile addPersonIntoFile,
+                            AddPasswordToIntoFile passwordIntoFile) {
         this.personRepository = personRepository;
         this.passwords = passwords;
         this.addPersonIntoFile = addPersonIntoFile;

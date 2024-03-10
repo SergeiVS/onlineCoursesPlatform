@@ -10,12 +10,14 @@ public class AddChangeCourseDto {
     private final String courseName;
     // sourceMaterial- ссылка на файл откуда брать материал, это поле при создании курса может остаться пустым,
     // но при пустых материалах и/или тестах курс не может быть активным.
+    private final boolean isActive;
     private final String materialSource;
 
 
-    public AddChangeCourseDto(Integer courseId, String courseName, String materialSource) {
+    public AddChangeCourseDto(Integer courseId, String courseName, boolean isActive, String materialSource) {
         this.courseId = courseId;
         this.courseName = courseName;
+        this.isActive = isActive;
         this.materialSource = materialSource;
 
     }
@@ -26,6 +28,10 @@ public class AddChangeCourseDto {
 
     public String getCourseName() {
         return courseName;
+    }
+
+    public boolean isActive() {
+        return isActive;
     }
 
     public String getMaterialSource() {

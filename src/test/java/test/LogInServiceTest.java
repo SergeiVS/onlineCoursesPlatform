@@ -4,13 +4,12 @@ import core.dto.errors.ErrorCoding;
 import core.dto.errors.ErrorsDto;
 import core.dto.requests.LogInDto;
 import core.dto.requests.Request;
-import core.dto.responses.Response;
 import core.dto.responses.ResponsePerson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import repository.Passwords;
 import repository.PersonRepository;
-import services.LogInService;
+import services.PersonServices.LogInService;
 import services.Utils.fileReder.ReadPassesFromFile;
 import services.Utils.fileReder.ReadPersonDatabaseFromFile;
 
@@ -18,7 +17,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LogInServiceTest {
