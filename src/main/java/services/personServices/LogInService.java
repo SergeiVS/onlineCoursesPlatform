@@ -47,7 +47,7 @@ public class LogInService {
         if (isAccepted) {
             Person foundPerson = persons.findByEmail(email);
             if (foundPerson != null) {
-                responsePerson = Converters.PersonToDtoConverter(foundPerson);
+                responsePerson = Converters.personToResponseConverter(foundPerson);
                 errors.add(new ErrorsDto(ErrorCoding.E_200, "Access alloyed"));
 
             } else {

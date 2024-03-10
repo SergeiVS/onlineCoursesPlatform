@@ -30,7 +30,7 @@ public class FindPersonService {
             List<Person> foundPersons = personRepository.findAll();
 
             personsForReturn = foundPersons.stream()
-                    .map(Converters::PersonToDtoConverter)
+                    .map(Converters::personToResponseConverter)
                     .collect(Collectors.toList());
 
             if (personsForReturn.isEmpty()) {
@@ -50,7 +50,7 @@ public class FindPersonService {
 
         try {
             Person foundPerson = personRepository.findById(courseId.getRequest());
-            personForReturn = Converters.PersonToDtoConverter(foundPerson);
+            personForReturn = Converters.personToResponseConverter(foundPerson);
             if (foundPerson == null) {
                 errors.add(new ErrorsDto(ErrorCoding.E_404, "User did not found"));
             } else {
@@ -74,7 +74,7 @@ public class FindPersonService {
 
            personsForReturn = foundPersons.stream()
                    .filter(person -> person.getLastName().equals(lastName))
-                   .map(Converters::PersonToDtoConverter)
+                   .map(Converters::personToResponseConverter)
                    .collect(Collectors.toList());
 
             if (personsForReturn.isEmpty()) {

@@ -70,13 +70,13 @@ public class AddPersonService {
                     personId = personRepository.add(newPerson);
                     passwords.getPasswords().put(email.hashCode(), passHash);
                     errors.add(new ErrorsDto(ErrorCoding.E_201, "Person added"));
-                    person = Converters.PersonToDtoConverter(newPerson);
+                    person = Converters.personToResponseConverter(newPerson);
                 } else {
                     newPerson = new Person(0, fName, lName, email);
                     personId = personRepository.add(newPerson);
                     passwords.getPasswords().put(email.hashCode(), passHash);
                     errors.add(new ErrorsDto(ErrorCoding.E_201, "Person added without association with any course"));
-                    person = Converters.PersonToDtoConverter(newPerson);
+                    person = Converters.personToResponseConverter(newPerson);
                 }
                 //если данные не прошли проверку то добавление нового пользователя не происходит.
             } else {
