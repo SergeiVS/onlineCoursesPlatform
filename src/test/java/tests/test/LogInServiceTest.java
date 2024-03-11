@@ -17,7 +17,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
+
 
 public class LogInServiceTest {
 
@@ -50,7 +51,7 @@ public class LogInServiceTest {
         LogInDto dto = new LogInDto("john@dow.ee", 1537139031);
         Request<LogInDto> logInDto = new Request<>(dto);
         ResponsePerson actualPerson = service.logIn(logInDto).getResponse();
-        Assertions.assertEquals(expectedPerson, actualPerson);
+        assertEquals(expectedPerson, actualPerson);
     }
     @Test
     void logInErrors() {
@@ -60,6 +61,6 @@ public class LogInServiceTest {
         LogInDto dto = new LogInDto("john@dow.ee", 1537139031);
         Request<LogInDto> logInDto = new Request<>(dto);
         List<ErrorsDto> actualErrors = service.logIn(logInDto).getErrors();
-        Assertions.assertEquals(expextedErrors, actualErrors);
+        assertEquals(expextedErrors, actualErrors);
     }
 }
