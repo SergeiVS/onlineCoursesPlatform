@@ -44,6 +44,7 @@ class LogInServiceTest { Passwords passwords;
         errors.add(new ErrorsDto(ErrorCoding.E_200, "Access alloyed"));
         ResponsePerson expectedPerson;
         expectedPerson = (new ResponsePerson(11, "John", "Dow", 0, "admin"));
+
         LogInDto dto = new LogInDto("john@dow.ee", 1537139031);
         Request<LogInDto> logInDto = new Request<>(dto);
         ResponsePerson actualPerson = service.logIn(logInDto).getResponse();
