@@ -1,4 +1,4 @@
-package test;
+package tests.test;
 
 import core.dto.errors.ErrorsDto;
 import org.junit.jupiter.api.Test;
@@ -17,7 +17,7 @@ class EmailFormatValidationTest {
         List<ErrorsDto> errors = new ArrayList<>();
         String email = "hot@Test.com";
         var isValid = validation.validate(email, errors);
-        assertTrue(isValid);
+        Assertions.assertTrue(isValid);
     }
     @Test
     void validateFalseAt() {
@@ -25,7 +25,7 @@ class EmailFormatValidationTest {
         List<ErrorsDto> errors = new ArrayList<>();
         String email = "hotTest.com";
         var isValid = validation.validate(email, errors);
-        assertFalse(isValid);
+        Assertions.assertFalse(isValid);
     }
     @Test
     void validateFalseComma() {
@@ -33,7 +33,7 @@ class EmailFormatValidationTest {
         List<ErrorsDto> errors = new ArrayList<>();
         String email = "h,ot@Test.com";
         var isValid = validation.validate(email, errors);
-        assertFalse(isValid);
+        Assertions.assertFalse(isValid);
     }
 
     @Test
@@ -42,6 +42,6 @@ class EmailFormatValidationTest {
         List<ErrorsDto> errors = new ArrayList<>();
         String email = "23-._hdfOLJm@Test.com";
         var isValid = validation.validate(email, errors);
-        assertTrue(isValid);
+        Assertions.assertTrue(isValid);
     }
 }

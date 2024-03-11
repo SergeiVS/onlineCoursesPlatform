@@ -1,4 +1,4 @@
-package test;
+package tests.test;
 
 import core.dto.errors.ErrorCoding;
 import core.dto.errors.ErrorsDto;
@@ -50,7 +50,7 @@ public class LogInServiceTest {
         LogInDto dto = new LogInDto("john@dow.ee", 1537139031);
         Request<LogInDto> logInDto = new Request<>(dto);
         ResponsePerson actualPerson = service.logIn(logInDto).getResponse();
-        assertEquals(expectedPerson, actualPerson);
+        Assertions.assertEquals(expectedPerson, actualPerson);
     }
     @Test
     void logInErrors() {
@@ -60,6 +60,6 @@ public class LogInServiceTest {
         LogInDto dto = new LogInDto("john@dow.ee", 1537139031);
         Request<LogInDto> logInDto = new Request<>(dto);
         List<ErrorsDto> actualErrors = service.logIn(logInDto).getErrors();
-        assertEquals(expextedErrors, actualErrors);
+        Assertions.assertEquals(expextedErrors, actualErrors);
     }
 }
