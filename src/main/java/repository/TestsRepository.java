@@ -3,13 +3,14 @@ package repository;
 import core.entity.Test;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
-public class TestsRepository implements TestsRepositoryInterface{
+public class TestsRepository implements TestsRepositoryInterface {
     private Map<Integer, List<Test>> tests;
+
     public TestsRepository() {
         this.tests = new HashMap<>();
     }
+
     @Override
     public Map<Integer, List<Test>> findAll() {
         return tests;
@@ -36,9 +37,17 @@ public class TestsRepository implements TestsRepositoryInterface{
     public void addTest(Integer courseId, Test test) {
         //проверяем есть ли для данного ид уже список тестов, если нет, то создаем новый.
         tests.computeIfAbsent(courseId, k -> new ArrayList<>())
-                .add(test); //добавляем в список новый тес
+                .add(test); //добавляем в список новый тест
     }
 
-
-
+    public Test findTestByName(String testName) {
+        for (List<Test> courseTests : tests.values()) {
+            for (Test test : courseTests) {
+                if (test.getTestName().equals(testName)) {
+                    return test;
+                }
+            }
+        }
+        return null;
+    }
 }
