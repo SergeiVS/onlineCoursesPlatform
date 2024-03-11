@@ -1,7 +1,9 @@
 package core.entity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Test {
 
@@ -9,6 +11,7 @@ public class Test {
     private String testName;
     private boolean isActive;
     private List<Question> questions;
+    private Map<Integer, String> correctAnswers;
 
     // Конструктор
     public Test(Integer courseId, String testName, boolean isActive) {
@@ -16,6 +19,7 @@ public class Test {
         this.testName = testName;
         this.isActive = isActive;
         this.questions = new ArrayList<>();
+        this.correctAnswers = new HashMap<>();
     }
 
     // Метод добавления вопроса
@@ -40,6 +44,8 @@ public class Test {
         return questions;
     }
 
+    public Map<Integer, String> getCorrectAnswers() { return correctAnswers; }
+
     @Override
     public String toString() {
         return "Test{" +
@@ -47,6 +53,7 @@ public class Test {
                 "testName='" + testName + '\'' +
                 ", isActive=" + isActive +
                 ", questions=" + questions +
+                ", correctAnswers=" + correctAnswers +
                 '}';
     }
 

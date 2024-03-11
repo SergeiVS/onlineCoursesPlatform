@@ -1,11 +1,9 @@
-package services;
+package services.testing;
 
 import core.dto.errors.ErrorsDto;
 import core.dto.requests.Request;
-import core.dto.requests.TestResultDto;
 import core.dto.responses.Response;
 import core.dto.responses.ResponseTestForPassing;
-import core.dto.responses.ResponseTestResult;
 import core.entity.Person;
 import core.entity.Test;
 import repository.CoursesRepository;
@@ -18,14 +16,14 @@ import services.validation.ValidationInterface;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestingService {
+public class TestForPassing {
     private final RepositoryInterface<Person> persons;
     private final CoursesRepository courses;
     private final Grades grades;
     private final TestsRepository tests;
 
     private final Test testToDo;
-    public TestingService(RepositoryInterface<Person> persons, CoursesRepository courses, Grades grades, TestsRepository tests, Test testToDo) {
+    public TestForPassing(RepositoryInterface<Person> persons, CoursesRepository courses, Grades grades, TestsRepository tests, Test testToDo) {
         this.persons = persons;
         this.courses = courses;
         this.grades = grades;
@@ -46,6 +44,12 @@ public class TestingService {
         Test nextTest = testsOfCourse.get(lastGrade);
         String nextTestName = nextTest.getTestName();
         // Создаем список для хранения вопросов для следующего теста
+        List<ResponseTestForPassing.ResponseQuestion> questions = getQuestions(nextTest);
+        return new Response<>(new ResponseTestForPassing(nextTestName, questions));
+
+    }
+
+    private static List<ResponseTestForPassing.ResponseQuestion> getQuestions(Test nextTest) {
         List<ResponseTestForPassing.ResponseQuestion> questions = new ArrayList<>();
         // Перебираем вопросы из следующего теста и создаем для каждого объект ResponseQuestion
         for (int i = 0; i < nextTest.getQuestions().size(); i++) {
@@ -60,10 +64,8 @@ public class TestingService {
             // Добавляем созданный объект ResponseQuestion в список вопросов для следующего теста
             questions.add(responseQuestion);
         }
-        return new Response<>(new ResponseTestForPassing(nextTestName, questions));
-
+        return questions;
     }
 
-    Response<ResponseTestResult> validateTestResult(Request<TestResultDto> result) {
-    return null;}
 }
+
