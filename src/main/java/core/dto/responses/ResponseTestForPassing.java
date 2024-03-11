@@ -8,7 +8,7 @@ public class ResponseTestForPassing {
 
 
 
-    public ResponseTestForPassing(String testName, List<ResponseQuestion> responseQuestions, List<ResponseQuestion> questions) {
+    public ResponseTestForPassing(String testName,List<ResponseQuestion> questions) {
         this.testName = testName;
 
         this.questions = questions;
