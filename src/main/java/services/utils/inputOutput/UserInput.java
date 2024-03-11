@@ -1,4 +1,4 @@
-package services.Utils.inputOutput;
+package services.utils.inputOutput;
 
 import java.util.Scanner;
 

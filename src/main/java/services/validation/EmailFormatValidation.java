@@ -2,20 +2,18 @@ package services.validation;
 
 import core.dto.errors.ErrorCoding;
 import core.dto.errors.ErrorsDto;
-import services.validation.ValidationInterface;
 
-
-import java.io.IOException;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
+
 // проверяет входящую строку на соответствие формату емайла, на наличие информации, на Исключения
 public class EmailFormatValidation implements ValidationInterface<String> {
     @Override
     public boolean validate(String string, List<ErrorsDto> errors) {
 
-        boolean result = true;
+        boolean result;
 
         try {
             if (string == null) {
@@ -26,7 +24,11 @@ public class EmailFormatValidation implements ValidationInterface<String> {
             String regex = "^[A-Za-z0-9+._-]+@(.+)$";
             Pattern pattern = Pattern.compile(regex);
             Matcher matcher = pattern.matcher(string);
-            result = matcher.hasMatch();
+            result = matcher.matches();
+            if (!result) {
+                errors.add(new ErrorsDto(ErrorCoding.E_401, "Email format is not valid"));
+                return false;
+            } else return true;
 
         } catch (PatternSyntaxException e) {
 
@@ -37,9 +39,10 @@ public class EmailFormatValidation implements ValidationInterface<String> {
             errors.add(new ErrorsDto(ErrorCoding.E_400, e.getMessage()));
             return false;
         }
-        if (!result) {
-            errors.add(new ErrorsDto(ErrorCoding.E_401, "Email format is not valid"));
-        }
-        return result;
+//        if (!result) {
+//            errors.add(new ErrorsDto(ErrorCoding.E_401, "Email format is not valid"));
+//
+//        }
+      //  return result;
     }
 }

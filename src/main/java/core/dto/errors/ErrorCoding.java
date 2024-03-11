@@ -8,6 +8,7 @@ public enum ErrorCoding {
     E_302(302,"Found"),
     E_400(400, "Bad request"),
     E_401(401, "Authorization failed"),
+    E_403(403, "Access denied"),
     E_404(404, "File not found");
 
    final int errorCode;
