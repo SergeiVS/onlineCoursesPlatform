@@ -1,7 +1,5 @@
 package core.dto.responses;
 
-import core.entity.Test;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +7,7 @@ public class ResponseTestForPassing {
     private final String testName;
     private final List<ResponseQuestion> questions = new ArrayList<>();
 
-    public ResponseTestForPassing(String testName) {
+    public ResponseTestForPassing(String testName, List<ResponseQuestion> questions) {
         this.testName = testName;
     }
 
@@ -29,7 +27,7 @@ public class ResponseTestForPassing {
                 '}';
     }
 
-    public class ResponseQuestion {
+    public static class ResponseQuestion {
         // нумерация вопросов происходит в сервисе который заполняет дто
         private final int questionNumber;
         private final String question;
