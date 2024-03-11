@@ -8,19 +8,18 @@ public class ErrorsDto {
 
     private String message;
 
+    public ErrorCoding getErrorCode() {
+        return errorCode;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
     public ErrorsDto(ErrorCoding errorCode, String message) {
         this.errorCode = errorCode;
         this.message = message;
     }
-
-    public void setErrorCode(ErrorCoding errorCode) {
-        this.errorCode = errorCode;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
