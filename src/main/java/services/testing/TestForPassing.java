@@ -45,7 +45,7 @@ public class TestForPassing {
         String nextTestName = nextTest.getTestName();
         // Создаем список для хранения вопросов для следующего теста
         List<ResponseTestForPassing.ResponseQuestion> questions = getQuestions(nextTest);
-        return new Response<>(new ResponseTestForPassing(nextTestName, questions));
+        return new Response<>(new ResponseTestForPassing(nextTestName, questions),errors);
 
     }
 
