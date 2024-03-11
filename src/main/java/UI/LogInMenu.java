@@ -6,6 +6,7 @@ import core.dto.responses.Response;
 import core.dto.responses.ResponsePerson;
 import services.personServices.LogInService;
 import services.utils.inputOutput.PrintErrors;
+import services.utils.inputOutput.PrintUser;
 import services.utils.inputOutput.UserInput;
 
 import java.util.Objects;
@@ -36,7 +37,9 @@ public class LogInMenu implements UIInterface {
         responsePerson = service.logIn(new Request<>(new LogInDto(email, passHash)));
         Optional<ResponsePerson> person = Optional.ofNullable(responsePerson.getResponse());
         if (person.isPresent()) {
-            System.out.println(person.get().getFirstName() + " WELLCOME");
+            System.out.println(person.get().getFirstName() + " WELLCOME!\n ");
+            PrintUser.userPrintOut(person.get());
+
             if (Objects.equals(person.get().getAccessType(), "is_student")) {
                 studentMenu.execute();
             }
@@ -54,6 +57,6 @@ public class LogInMenu implements UIInterface {
 
     @Override
     public void printActionName() {
-
+        System.out.println("LogIn");
     }
 }
