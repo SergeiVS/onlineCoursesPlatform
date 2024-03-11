@@ -32,10 +32,12 @@ public class LogInMenu implements UIInterface {
 
     @Override
     public void execute() {
+
         String email = UserInput.insertString("Please insert login/email");
         Integer passHash = UserInput.insertString("Please insert your password").hashCode();
         responsePerson = service.logIn(new Request<>(new LogInDto(email, passHash)));
         Optional<ResponsePerson> person = Optional.ofNullable(responsePerson.getResponse());
+
         if (person.isPresent()) {
             System.out.println(person.get().getFirstName() + " WELLCOME!\n ");
             PrintUser.userPrintOut(person.get());
@@ -49,7 +51,7 @@ public class LogInMenu implements UIInterface {
             if (Objects.equals(person.get().getAccessType(), "admin")) {
                 adminMenu.execute();
             }
-        }else {
+        } else {
             PrintErrors.printErrorsList(responsePerson.getErrors());
             studentMenu.execute();
         }
