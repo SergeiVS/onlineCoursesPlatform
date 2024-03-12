@@ -22,17 +22,15 @@ public class AddPersonService {
 
     private final PersonRepository personRepository;
     private final Passwords passwords;
-    private final AddPersonIntoFile addPersonIntoFile;
-    private final AddPasswordToIntoFile passwordIntoFile;
+//    private final AddPersonIntoFile addPersonIntoFile;
+//    private final AddPasswordToIntoFile passwordIntoFile;
 
 
-    public AddPersonService(PersonRepository personRepository, Passwords passwords,
-                            AddPersonIntoFile addPersonIntoFile,
-                            AddPasswordToIntoFile passwordIntoFile) {
+    public AddPersonService(PersonRepository personRepository, Passwords passwords) {
         this.personRepository = personRepository;
         this.passwords = passwords;
-        this.addPersonIntoFile = addPersonIntoFile;
-        this.passwordIntoFile = passwordIntoFile;
+//        this.addPersonIntoFile = addPersonIntoFile;
+//        this.passwordIntoFile = passwordIntoFile;
     }
 
     // Добавляет нового пользователя
