@@ -23,6 +23,7 @@ public class TestForPassing {
     private final TestsRepository tests;
 
     private final Test testToDo;
+
     public TestForPassing(RepositoryInterface<Person> persons, CoursesRepository courses, Grades grades, TestsRepository tests, Test testToDo) {
         this.persons = persons;
         this.courses = courses;
@@ -30,10 +31,13 @@ public class TestForPassing {
         this.tests = tests;
         this.testToDo = testToDo;
     }
+
     public Response<ResponseTestForPassing> initiateTest(Request<Integer> personIdRequest) {
+
         List<ErrorsDto> errors = new ArrayList<>();
         ValidationInterface<Request<Integer>> intValid = new IntegerRequestValidation();
         boolean isValid = intValid.validate(personIdRequest, errors);
+
         // Получаем personId из запроса
         Integer personId = personIdRequest.getRequest();
         // находим через репозиторий персон ид курса
@@ -45,7 +49,7 @@ public class TestForPassing {
         String nextTestName = nextTest.getTestName();
         // Создаем список для хранения вопросов для следующего теста
         List<ResponseTestForPassing.ResponseQuestion> questions = getQuestions(nextTest);
-        return new Response<>(new ResponseTestForPassing(nextTestName, questions),errors);
+        return new Response<>(new ResponseTestForPassing(nextTestName, questions), errors);
 
     }
 
