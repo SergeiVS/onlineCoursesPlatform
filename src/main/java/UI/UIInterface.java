@@ -2,6 +2,6 @@ package UI;
 
 public interface UIInterface {
 
-    void execute();
+    int execute();
     void printActionName();
 }

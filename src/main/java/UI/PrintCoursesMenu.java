@@ -4,6 +4,7 @@ import core.dto.responses.Response;
 import core.dto.responses.ResponseAllCourses;
 import services.curseServices.FindCourseServices;
 import services.utils.inputOutput.PrintCoursesMap;
+import services.utils.inputOutput.PrintErrors;
 
 import java.util.Map;
 import java.util.Optional;
@@ -11,30 +12,25 @@ import java.util.Optional;
 public class PrintCoursesMenu implements UIInterface{
 
    private final FindCourseServices services;
-   private final StartMenu startMenu;
 
-   private int userid = 0;
 
-    public void setUserid(int userid) {
-        this.userid = userid;
-    }
-
-    public PrintCoursesMenu(FindCourseServices services, StartMenu startMenu) {
+    public PrintCoursesMenu(FindCourseServices services) {
         this.services = services;
-        this.startMenu = startMenu;
     }
 
     @Override
-    public void execute() {
+    public int execute() {
 
         Response<ResponseAllCourses> allCoursesResponse = services.findAll();
         Optional<Map<Integer, String>> courses = Optional.ofNullable(allCoursesResponse.getResponse().getCoursesMap());
 
         if (courses.isPresent()){
             PrintCoursesMap.printMap(courses.get());
+            return 0;
 
         }else {
-            startMenu.execute();
+            PrintErrors.printErrorsList(allCoursesResponse.getErrors());
+            return 0;
         }
 
     }
