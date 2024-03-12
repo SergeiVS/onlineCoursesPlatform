@@ -14,10 +14,10 @@ import java.util.List;
 import static core.dto.errors.ErrorCoding.E_200;
 import static core.dto.errors.ErrorCoding.E_400;
 
-public class setPersonOnCourseService {
+public class SetPersonOnCourseService {
     private final PersonRepository personRepository;
 
-    public setPersonOnCourseService(PersonRepository personRepository) {
+    public SetPersonOnCourseService(PersonRepository personRepository) {
         this.personRepository = personRepository;
     }
 

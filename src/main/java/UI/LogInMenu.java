@@ -17,21 +17,16 @@ public class LogInMenu implements UIInterface {
     private Response<ResponsePerson> responsePerson;
     private final LogInService service;
 
-    private final StartMenu startMenu;
-    private final StudentMenu studentMenu;
-    private final AdminMenu adminMenu;
-    private final OldStudentMenu oldStudentMenu;
 
-    public LogInMenu(LogInService service, StartMenu startMenu, StudentMenu studentMenu, AdminMenu adminMenu, OldStudentMenu oldStudentMenu) {
+    public LogInMenu(LogInService service) {
         this.service = service;
-        this.startMenu = startMenu;
-        this.studentMenu = studentMenu;
-        this.adminMenu = adminMenu;
-        this.oldStudentMenu = oldStudentMenu;
+
     }
 
     @Override
-    public void execute() {
+    public int execute() {
+
+        printActionName();
 
         String email = UserInput.insertString("Please insert login/email");
         Integer passHash = UserInput.insertString("Please insert your password").hashCode();
@@ -43,18 +38,18 @@ public class LogInMenu implements UIInterface {
             PrintUser.userPrintOut(person.get());
 
             if (Objects.equals(person.get().getAccessType(), "is_student")) {
-                studentMenu.execute();
+                return MenuIndexes.I_4.getIndex();
+
             }
-            if (Objects.equals(person.get().getAccessType(), "was_student")) {
-                oldStudentMenu.execute();
-            }
+
             if (Objects.equals(person.get().getAccessType(), "admin")) {
-                adminMenu.execute();
+                return MenuIndexes.I_5.getIndex();
             }
         } else {
             PrintErrors.printErrorsList(responsePerson.getErrors());
-            studentMenu.execute();
+            return 0;
         }
+        return 0;
     }
 
     @Override
