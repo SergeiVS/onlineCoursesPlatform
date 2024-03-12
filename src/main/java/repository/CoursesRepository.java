@@ -15,11 +15,11 @@ public class CoursesRepository implements RepositoryInterface<Course> {
     private List<Course> courses;
     int idGenerator = 1;
 
-    public CoursesRepository() {
-
+       public CoursesRepository() {
         this.courses = new ArrayList<>();
     }
-// Генератор новых ИД
+
+    // Генератор новых ИД
     public int idGenerate() {
         return idGenerator++;
     }
