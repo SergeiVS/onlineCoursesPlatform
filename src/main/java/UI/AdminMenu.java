@@ -21,7 +21,7 @@ public class AdminMenu implements UIInterface {
                 int index = UserInput.insertInt("Insert menu number from above");
                 switch (index) {
                     case 1:
-                        return MenuIndexes.I_6.getIndex();
+                        return MenuIndexes.I_11.getIndex();
                     case 2:
                         return MenuIndexes.I_8.getIndex();
                     case 3:
@@ -31,7 +31,7 @@ public class AdminMenu implements UIInterface {
                     case 5:
                         return MenuIndexes.I_10.getIndex();
                     case 6:
-                        return MenuIndexes.I_14.getIndex();
+                        return MenuIndexes.I_6.getIndex();
                     case 7:
                         return MenuIndexes.I_13.getIndex();
                     default:
