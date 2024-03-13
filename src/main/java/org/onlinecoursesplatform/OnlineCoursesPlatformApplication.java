@@ -47,6 +47,7 @@ public class OnlineCoursesPlatformApplication {
         RegisterOnCourseMenu registerOnCourseMenu = new RegisterOnCourseMenu(setPersonOnCourseService);
         TestingMenu testingMenu = new TestingMenu(testForPassing);
 
+
         List<UIInterface> menus = new ArrayList<>();
 
         menus.add(mainMenu);

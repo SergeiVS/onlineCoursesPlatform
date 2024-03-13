@@ -1,6 +1,6 @@
 number_of_questions = 10
 course_id = 1
-test_name = Test for course 1, module 4.
+test_name = Test for course 1, module 4
 is_active = true
 
 ##
