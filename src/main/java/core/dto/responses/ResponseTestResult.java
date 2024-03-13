@@ -5,13 +5,13 @@ import java.util.Map;
 // возвращает пользователю результат прохождения им теста.
 public class ResponseTestResult {
      private final Integer personId;
-     private final String courseName;
+     private final Integer courseId;
      //Ключом является номер вопроса, а значением правильный или неправильный ответ
      private final Map<Integer, Boolean> results;
      private final Integer grade;
-    public ResponseTestResult(Integer personId, String courseName, Map<Integer, Boolean> results, Integer grade) {
+    public ResponseTestResult(Integer personId, Integer courseId, Map<Integer, Boolean> results, Integer grade) {
         this.personId = personId;
-        this.courseName = courseName;
+        this.courseId = courseId;
         this.results = results;
         this.grade = grade;
     }
@@ -20,8 +20,8 @@ public class ResponseTestResult {
         return personId;
     }
 
-    public String getCourseName() {
-        return courseName;
+    public Integer getCourseId() {
+        return courseId;
     }
 
     public Map<Integer, Boolean> getResults() {
@@ -36,7 +36,7 @@ public class ResponseTestResult {
     public String toString() {
         return "ResponseTestResult{" +
                 "personId=" + personId +
-                ", courseName='" + courseName + '\'' +
+                ", courseId='" + courseId + '\'' +
                 ", results=" + results +
                 ", grade=" + grade +
                 '}';

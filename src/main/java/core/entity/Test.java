@@ -8,7 +8,7 @@ public class Test {
     private String testName;
     private boolean isActive;
     private List<Question> questions;
-    private Map<Integer, String> correctAnswers;
+    private Map<Integer, Character> correctAnswers;
 
     // Конструктор
     public Test(Integer courseId, String testName, boolean isActive) {
@@ -41,7 +41,7 @@ public class Test {
         return questions;
     }
 
-    public Map<Integer, String> getCorrectAnswers() { return correctAnswers; }
+    public Map<Integer, Character> getCorrectAnswers() { return correctAnswers; }
 
     @Override
     public String toString() {
