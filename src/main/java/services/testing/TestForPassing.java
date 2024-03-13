@@ -7,7 +7,6 @@ import core.dto.responses.Response;
 import core.dto.responses.ResponseTestForPassing;
 import core.entity.Person;
 import core.entity.Test;
-import repository.CoursesRepository;
 import repository.Grades;
 import repository.RepositoryInterface;
 import repository.TestsRepository;
@@ -19,19 +18,15 @@ import java.util.List;
 
 public class TestForPassing {
     private final RepositoryInterface<Person> persons;
-    private final CoursesRepository courses;
     private final Grades grades;
     private final TestsRepository tests;
 
-    private final Test testToDo;
-
-    public TestForPassing(RepositoryInterface<Person> persons, CoursesRepository courses, Grades grades, TestsRepository tests, Test testToDo) {
+    public TestForPassing(RepositoryInterface<Person> persons, Grades grades, TestsRepository tests) {
         this.persons = persons;
-        this.courses = courses;
         this.grades = grades;
         this.tests = tests;
-        this.testToDo = testToDo;
     }
+
 
     public Response<ResponseTestForPassing> initiateTest(Request<Integer> personIdRequest) {
 

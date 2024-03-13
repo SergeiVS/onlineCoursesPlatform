@@ -19,5 +19,10 @@ public class UserInput {
         System.out.println(message);
         return scanner.nextBoolean();
     }
+    public static String insertChar(String message){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(message);
+        return scanner.nextLine();
+    }
 
 }

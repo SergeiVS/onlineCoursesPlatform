@@ -59,6 +59,10 @@ public class ResponseTestForPassing {
             return question;
         }
 
+        public String getAnswerA() {
+            return answerA;
+        }
+
         public String getAnswerB() {
             return answerB;
         }
