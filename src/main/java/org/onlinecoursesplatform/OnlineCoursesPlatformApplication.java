@@ -1,9 +1,8 @@
 package org.onlinecoursesplatform;
 
 import UI.*;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import repository.*;
+import services.curseServices.FindCourseServices;
 import services.personServices.AddPersonService;
 import services.personServices.LogInService;
 import services.utils.fileReder.ReadCourseFromFile;
@@ -23,18 +22,21 @@ public class OnlineCoursesPlatformApplication {
         ReadCourseFromFile readCourseFromFile = new ReadCourseFromFile();
         ReadPassesFromFile readPassesFromFile = new ReadPassesFromFile();
         ReadPersonDatabaseFromFile personDatabaseFromFile = new ReadPersonDatabaseFromFile();
+
         AddPasswordToIntoFile addPasswordToIntoFile = new AddPasswordToIntoFile();
         PersonRepository personRepository = new PersonRepository(personDatabaseFromFile.readFromFile("src/main/resources/persons/PersonsDatabase.txt"));
         CoursesRepository coursesRepository = new CoursesRepository();
         Passwords passwords = new Passwords(readPassesFromFile.readFromFile("src/main/resources/PassesDatabase"));
         TestsRepository testsRepository = new TestsRepository();
-        LogInService logInService = new LogInService(personRepository, passwords);
         Grades gradesRepository = new Grades();
+
+        LogInService logInService = new LogInService(personRepository, passwords);
+        FindCourseServices findCourseServices = new FindCourseServices(coursesRepository);
         AddPersonService addPersonService = new AddPersonService(personRepository, passwords);
         MainMenu mainMenu = new MainMenu();
         LogInMenu logInMenu = new LogInMenu(logInService);
         RegisterNewUser registerNewUserMenu = new RegisterNewUser(addPersonService);
-        GetCourseInformationMenu getCourseInformationMenu = new GetCourseInformationMenu();
+        GetCourseInformationMenu getCourseInformationMenu = new GetCourseInformationMenu(findCourseServices);
         StudentMenu studentMenu = new StudentMenu();
         AdminMenu adminMenu = new AdminMenu();
 
