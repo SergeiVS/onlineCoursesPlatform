@@ -32,19 +32,25 @@ public class TestRepositoryService {
         boolean isValid = validation.validate(path, errors);
         try {
             File file = new File(path.toString());
-             Optional<Test> test = Optional.empty();
+            Optional<Test> test = Optional.empty();
 
             if (file.exists()) {
-                 test = Optional.ofNullable(testFromFile.readFromFile(String.valueOf(path)));
+                test = Optional.ofNullable(testFromFile.readFromFile(String.valueOf(path)));
+            } else {
+                errors.add(new ErrorsDto(ErrorCoding.E_404, "File not found"));
+            }
 
-            }else {errors.add(new ErrorsDto(ErrorCoding.E_404, "File not found"));}
-           if (test.isPresent()) {
-               int courseId = test.get().getCourseId();
-               repository.addTest(courseId, test.get());
+            if (test.isPresent()) {
+                int courseId = test.get().getCourseId();
+                repository.addTest(courseId, test.get());
+                return new Response<>("Test added", errors);
+            }
+        }catch (RuntimeException e){
+            e.printStackTrace();
+            errors.add(new ErrorsDto(ErrorCoding.E_400,"database error"));
 
-           }
         }
 
-
+return new Response<>("Test did not added", errors);
     }
 }
