@@ -1,9 +1,6 @@
 package core.entity;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Test {
 
@@ -93,6 +90,18 @@ public class Test {
 
         public String getProofValue() {
             return proofValue;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (!(o instanceof Question question)) return false;
+            return Objects.equals(getAnswerA(), question.getAnswerA()) && Objects.equals(getAnswerB(), question.getAnswerB()) && Objects.equals(getAnswerC(), question.getAnswerC()) && Objects.equals(getProofValue(), question.getProofValue());
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(getAnswerA(), getAnswerB(), getAnswerC(), getProofValue());
         }
 
         @Override

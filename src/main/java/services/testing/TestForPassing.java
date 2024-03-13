@@ -1,5 +1,6 @@
 package services.testing;
 
+import core.dto.errors.ErrorCoding;
 import core.dto.errors.ErrorsDto;
 import core.dto.requests.Request;
 import core.dto.responses.Response;
@@ -35,22 +36,32 @@ public class TestForPassing {
     public Response<ResponseTestForPassing> initiateTest(Request<Integer> personIdRequest) {
 
         List<ErrorsDto> errors = new ArrayList<>();
-        ValidationInterface<Request<Integer>> intValid = new IntegerRequestValidation();
-        boolean isValid = intValid.validate(personIdRequest, errors);
+        List<ResponseTestForPassing.ResponseQuestion> questions = new ArrayList<>();
+        String nextTestName = "name";
+        try {
+            ValidationInterface<Request<Integer>> intValid = new IntegerRequestValidation();
+            boolean isValid = intValid.validate(personIdRequest, errors);
+            if (!isValid) {
+                errors.add(new ErrorsDto(ErrorCoding.E_404, "Database did not found"));
+            } else {
+                // Получаем personId из запроса
+                Integer personId = personIdRequest.getRequest();
+                // находим через репозиторий персон ид курса
+                Integer searchedCourseId = persons.findById(personId).getCourseId();
+                List<Integer> personGrades = grades.findGradesById(searchedCourseId, personId);
+                Integer lastGrade = personGrades.size();
+                List<Test> testsOfCourse = tests.findTestsByCourseId(searchedCourseId);
+                Test nextTest = testsOfCourse.get(lastGrade);
+                nextTestName = nextTest.getTestName();
+                // Создаем список для хранения вопросов для следующего теста
+                questions = getQuestions(nextTest);
 
-        // Получаем personId из запроса
-        Integer personId = personIdRequest.getRequest();
-        // находим через репозиторий персон ид курса
-        Integer searchedCourseId = persons.findById(personId).getCourseId();
-        List<Integer> personGrades = grades.findGradesById(searchedCourseId, personId);
-        Integer lastGrade = personGrades.size();
-        List<Test> testsOfCourse = tests.findTestsByCourseId(searchedCourseId);
-        Test nextTest = testsOfCourse.get(lastGrade);
-        String nextTestName = nextTest.getTestName();
-        // Создаем список для хранения вопросов для следующего теста
-        List<ResponseTestForPassing.ResponseQuestion> questions = getQuestions(nextTest);
+            }
+
+        } catch (Exception e) {
+            errors.add(new ErrorsDto(ErrorCoding.E_400, "Internal database error"));
+        }
         return new Response<>(new ResponseTestForPassing(nextTestName, questions), errors);
-
     }
 
     private static List<ResponseTestForPassing.ResponseQuestion> getQuestions(Test nextTest) {
