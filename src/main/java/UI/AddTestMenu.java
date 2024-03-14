@@ -27,6 +27,7 @@ try {
         Optional<String> message = response.getResponse().describeConstable();
         if(message.isPresent()){
             System.out.println(message.get());
+            System.out.println(response.getErrors());
         }else {
             System.out.println(response.getErrors());
         }

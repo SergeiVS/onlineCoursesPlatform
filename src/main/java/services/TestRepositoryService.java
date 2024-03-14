@@ -31,14 +31,12 @@ public class TestRepositoryService {
         List<ErrorsDto> errors = new ArrayList<>();
         boolean isValid = validation.validate(path, errors);
         try {
-            File file = new File(path.toString());
+
             Optional<Test> test = Optional.empty();
 
-            if (file.exists()) {
-                test = Optional.ofNullable(testFromFile.readFromFile(String.valueOf(path)));
-            } else {
-                errors.add(new ErrorsDto(ErrorCoding.E_404, "File not found"));
-            }
+
+                test = Optional.ofNullable(testFromFile.readFromFile(path.getRequest()));
+
 
             if (test.isPresent()) {
                 int courseId = test.get().getCourseId();

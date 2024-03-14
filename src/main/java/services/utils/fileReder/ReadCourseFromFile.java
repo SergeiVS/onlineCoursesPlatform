@@ -2,7 +2,10 @@ package services.utils.fileReder;
 
 
 
+import core.entity.Course;
+
 import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,15 +16,15 @@ public class ReadCourseFromFile implements ReadFromFile<List<String>> {
     public List<String> readFromFile(String path) throws IOException {
 
         List<String> courseMaterial = new ArrayList<>();
-        BufferedReader reader = new BufferedReader(new java.io.FileReader(path));
+        BufferedReader reader = new BufferedReader(new FileReader(path));
         String readLine;
 try {
-
         while ((readLine = reader.readLine()) != null){
             String readCourseId;
             String courseName;
 
             if (readLine.toLowerCase().contains("course_id")){
+
                 readCourseId = (getString(readLine));
 
                 courseMaterial.add(0, readCourseId);
@@ -45,6 +48,6 @@ try {
     }
 //вспомогательный метод для выделения значения из строки файла
     private static String getString(String readLine) {
-        return readLine.split("=")[1].trim();
+        return readLine.split(":")[1].trim();
     }
 }

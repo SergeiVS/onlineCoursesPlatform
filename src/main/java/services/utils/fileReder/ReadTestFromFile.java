@@ -22,8 +22,8 @@ public class ReadTestFromFile implements ReadFromFile<Test> {
         String testName = null;
         boolean isActive = false;
         final var readTest = new Test(readCourseId, testName, isActive);
-        try {
 
+        try {
 
             while ((readLine = reader.readLine()) != null) {
 
