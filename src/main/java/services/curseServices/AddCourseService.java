@@ -13,6 +13,8 @@ import services.utils.inputOutput.PrintErrors;
 import services.validation.AddCourseDtoValidation;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -74,5 +76,34 @@ public class AddCourseService {
             courseMaterial.add(String.valueOf(course.get()));
         }
     }
+
+    public void loadCoursesFromFiles(String loadCoursesFilePath) {
+        try {
+            // Чтение всех путей к файлам курсов
+            List<String> coursePaths = Files.readAllLines(Paths.get(loadCoursesFilePath));
+
+            // Перебор всех путей и обработка каждого файла курса
+            for (String coursePath : coursePaths) {
+                // Чтение содержимого файла курса
+                List<String> lines = Files.readAllLines(Paths.get(coursePath));
+                // Получение ID и имени курса
+                Integer courseId = Integer.parseInt(lines.get(0).split(" : ")[1].trim());
+                String courseName = lines.get(1).split(" : ")[1].trim();
+
+                // Подготовка описания курса (начиная с третьей строки файла)
+                String description = lines.stream().skip(2).collect(Collectors.joining("\n"));
+
+                // Создание DTO и Request объектов
+                AddChangeCourseDto courseDto = new AddChangeCourseDto(courseId, courseName, true, coursePath);
+                Request<AddChangeCourseDto> request = new Request<>(courseDto);
+
+                // Добавление курса через addChangeCourse
+                addChangeCourse(request);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
