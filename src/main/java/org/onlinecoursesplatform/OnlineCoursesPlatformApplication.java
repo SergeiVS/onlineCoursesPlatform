@@ -2,6 +2,7 @@ package org.onlinecoursesplatform;
 
 import UI.*;
 import repository.*;
+import services.TestLoader;
 import services.TestRepositoryService;
 import services.curseServices.AddCourseService;
 import services.curseServices.FindCourseServices;
@@ -48,7 +49,7 @@ public class OnlineCoursesPlatformApplication {
         TestRepositoryService testRepositoryService = new TestRepositoryService(testsRepository, testFromFile);
         FindPersonService findPersonService = new FindPersonService(personRepository);
         TestResult testResult = new TestResult(personRepository,gradesRepository, testsRepository);
-
+        TestLoader testLoader = new TestLoader(testRepositoryService);
 
         MainMenu mainMenu = new MainMenu();
         LogInMenu logInMenu = new LogInMenu(logInService);
@@ -82,6 +83,8 @@ public class OnlineCoursesPlatformApplication {
         menus.add(12,changeCourseMenu);
         menus.add(13,addTestMenu);
 
+        addCourseService.loadCoursesFromFiles("src/main/resources/loadCourses.txt");
+testLoader.loadTests("src/main/resources/loadAllTests.txt");
         MenuSwitcher menuSwitcher = new MenuSwitcher(menus);
         menuSwitcher.execute();
 

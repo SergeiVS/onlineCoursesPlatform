@@ -1,3 +1,4 @@
 src/main/resources/courses/course1/Course1TestModul1.txt
 src/main/resources/courses/course1/Course1TestModul2.txt
 src/main/resources/courses/course1/Course1TestModul3.txt
+src/main/resources/courses/course1/Course1TestModul4.txt

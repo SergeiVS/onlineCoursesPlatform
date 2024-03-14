@@ -41,6 +41,10 @@ public class TestRepositoryService {
 
             if (test.isPresent()) {
                 int courseId = test.get().getCourseId();
+
+                if(!repository.getTests().containsKey(courseId)) {
+                    repository.addCourse(courseId);
+                }
                 repository.addTest(courseId, test.get());
                 return new Response<>("Test added", errors);
             }

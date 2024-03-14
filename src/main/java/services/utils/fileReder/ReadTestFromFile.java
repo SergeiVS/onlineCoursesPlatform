@@ -23,7 +23,7 @@ public class ReadTestFromFile implements services.utils.fileReder.ReadFromFile<T
         String testName = null;
         boolean isActive = false;
         List<Test.Question> questions;
-        Test readTest;
+        Test readTest = null;
 
         try {
 
@@ -60,7 +60,7 @@ public class ReadTestFromFile implements services.utils.fileReder.ReadFromFile<T
         } finally {
             reader.close();
         }
-        return readTest = null;
+        return readTest;
     }
 
 
