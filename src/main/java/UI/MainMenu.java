@@ -10,7 +10,6 @@ public class MainMenu implements UIInterface {
 
         try {
 
-
         while (true) {
             System.out.println("1. Log In");
             System.out.println("2. Register");
