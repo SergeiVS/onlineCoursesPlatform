@@ -10,6 +10,7 @@ import services.personServices.FindPersonService;
 import services.personServices.LogInService;
 import services.personServices.SetPersonOnCourseService;
 import services.testing.TestForPassing;
+import services.testing.TestResult;
 import services.utils.fileReder.ReadCourseFromFile;
 import services.utils.fileReder.ReadPassesFromFile;
 import services.utils.fileReder.ReadPersonDatabaseFromFile;
@@ -45,6 +46,7 @@ public class OnlineCoursesPlatformApplication {
         AddCourseService addCourseService = new AddCourseService(coursesRepository, readCourseFromFile);
         TestRepositoryService testRepositoryService = new TestRepositoryService(testsRepository, testFromFile);
         FindPersonService findPersonService = new FindPersonService(personRepository);
+        TestResult testResult = new TestResult(personRepository,gradesRepository, testsRepository);
 
 
         MainMenu mainMenu = new MainMenu();
@@ -54,7 +56,7 @@ public class OnlineCoursesPlatformApplication {
         StudentMenu studentMenu = new StudentMenu();
         AdminMenu adminMenu = new AdminMenu();
         RegisterOnCourseMenu registerOnCourseMenu = new RegisterOnCourseMenu(setPersonOnCourseService);
-        TestingMenu testingMenu = new TestingMenu(testForPassing);
+        TestingMenu testingMenu = new TestingMenu(testForPassing, testResult);
         AddChangeCourseMenu changeCourseMenu = new AddChangeCourseMenu(addCourseService);
         AddTestMenu addTestMenu = new AddTestMenu(testRepositoryService);
         GetGradesMenu getGradesMenu = new GetGradesMenu();
