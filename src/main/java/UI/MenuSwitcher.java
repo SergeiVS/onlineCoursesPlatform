@@ -14,12 +14,15 @@ public class MenuSwitcher implements UIInterface{
 
     @Override
     public int execute() {
-
-        int index = uiInterfaces.get(0).execute();
+try {
+    int index = uiInterfaces.get(0).execute();
         while (index >= 0){
             index = uiInterfaces.get(index).execute();
         }
-
+    }catch (RuntimeException e){
+    e.printStackTrace();
+    return 0;
+}
 
         return -1;
     }
