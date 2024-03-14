@@ -16,42 +16,36 @@ public class ReadTestFromFile implements services.utils.fileReder.ReadFromFile<T
     @Override
     public Test readFromFile(String path) throws IOException {
 
-        int questionsCounter = 0;
-        int numberOfQuestions = 0;
+
         BufferedReader reader = new BufferedReader(new FileReader(path));
         String readLine;
         Integer readCourseId = 0;
         String testName = null;
         boolean isActive = false;
 
-        Test readTest = new Test(readCourseId,testName,isActive);
+        Test readTest = new Test();
 
         try {
 
             while ((readLine = reader.readLine()) != null) {
 
-                if (readLine.toLowerCase().contains("number_of_questions")) {
-                    numberOfQuestions = Integer.parseInt(getString(readLine));
-                }
                 if (readLine.toLowerCase().contains("course_id")) {
-                    readCourseId = Integer.parseInt(getString(readLine));
+                    readTest.setCourseId(Integer.parseInt(getString(readLine)));
                 }
                 if (readLine.toLowerCase().contains("test_name")) {
-                    testName = getString(readLine);
+                    readTest.setTestName(getString(readLine));
                 }
                 if (readLine.toLowerCase().contains("is_active")) {
-                    isActive = Boolean.parseBoolean(getString(readLine));
+                    readTest.setActive(Boolean.parseBoolean(getString(readLine)));
                 }
-                readTest = new Test(readCourseId,testName,isActive);
+
 
                 if (readLine.contains("##")) {
                     Test.Question question = getQuestion(readLine, reader);
                     readTest.addQuestion(question);
-                    questionsCounter++;
+
                 }
             }
-
-            reader.close();
 
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());

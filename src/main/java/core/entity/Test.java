@@ -7,17 +7,11 @@ public class Test {
     private Integer courseId;
     private String testName;
     private boolean isActive;
-    private List<Question> questions;
-    private Map<Integer, Character> correctAnswers;
+    private List<Question> questions = new ArrayList<>();
+    private final Map<Integer, Character> correctAnswers = new HashMap<>();
 
     // Конструктор
-    public Test(Integer courseId, String testName, boolean isActive) {
-        this.courseId = courseId;
-        this.testName = testName;
-        this.isActive = isActive;
-        this.questions = new ArrayList<>();
-        this.correctAnswers = new HashMap<>();
-    }
+
 
     // Метод добавления вопроса
     public void addQuestion(Question question) {
@@ -42,6 +36,18 @@ public class Test {
     }
 
     public Map<Integer, Character> getCorrectAnswers() { return correctAnswers; }
+
+    public void setCourseId(Integer courseId) {
+        this.courseId = courseId;
+    }
+
+    public void setTestName(String testName) {
+        this.testName = testName;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
 
     @Override
     public String toString() {
