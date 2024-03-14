@@ -1,0 +1,74 @@
+number_of_questions = 10
+course_id = 1
+test_name = Test for course 1, module 1
+is_active = true
+
+##
+question = question1?
+answer_a = answerA.
+answer_b = answerB.
+answer_c = answerC.
+proof_value = b
+
+##
+question = question2?
+answer_a = answerA.
+answer_b = answerB.
+answer_c = answerC.
+proof_value = c;
+
+##
+question = question3?
+answer_a = answerA.
+answer_b = answerB.
+answer_c = answerC.
+proof_value = a
+
+##
+question = question4?
+answer_a = answerA.
+answer_b = answerB.
+answer_c = answerC.
+proof_value = b
+
+##
+question = question5?
+answer_a = answerA.
+answer_b = answerB.
+answer_c = answerC.
+proof_value = c
+
+##
+question = question6?
+answer_a = answerA.
+answer_b = answerB.
+answer_c = answerC.
+proof_value = c
+
+##
+question = question7?
+answer_a = answerA.
+answer_b = answerB.
+answer_c = answerC.
+proof_value = a
+
+##
+question = question8?
+answer_a = answerA.
+answer_b = answerB.
+answer_c = answerC.
+proof_value = a
+
+##
+question = question9?
+answer_a = answerA.
+answer_b = answerB.
+answer_c = answerC.
+proof_value = b
+
+##
+question = question10?
+answer_a = answerA.
+answer_b = answerB.
+answer_c = answerC.
+proof_value = c

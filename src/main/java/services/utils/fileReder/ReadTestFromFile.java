@@ -6,6 +6,7 @@ import core.entity.Test;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 // считывает из файла данные теста для проверки знаний пользователя.
@@ -22,8 +23,8 @@ public class ReadTestFromFile implements services.utils.fileReder.ReadFromFile<T
         Integer readCourseId = 0;
         String testName = null;
         boolean isActive = false;
-        List<Test.Question> questions;
-        Test readTest = null;
+
+        Test readTest = new Test(readCourseId,testName,isActive);
 
         try {
 
