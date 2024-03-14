@@ -45,10 +45,9 @@ public class TestRepositoryService {
                 repository.addTest(courseId, test.get());
                 return new Response<>("Test added", errors);
             }
-        }catch (RuntimeException e){
+        }catch (RuntimeException | IOException e){
             e.printStackTrace();
             errors.add(new ErrorsDto(ErrorCoding.E_400,"database error"));
-
         }
 
 return new Response<>("Test did not added", errors);

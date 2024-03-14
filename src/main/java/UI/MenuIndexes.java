@@ -10,11 +10,11 @@ public enum MenuIndexes {
     I_6(6, "Register on course"),
     I_7(7, "Testing menu"),
     I_8(8, "Get grades"),
-    I_9(9, "set course isActive"),
-    I_10(10,"Get student information by Id"),
-    I_11(11, "Get all students"),
-    I_12(12, "Get best Students"),
-    I_13(13, "add or change course");
+    I_9(9,"Get student information by Id"),
+    I_10(10, "Get all students"),
+    I_11(11, "Get best Students"),
+    I_12(12, "add or change course"),
+    I_13(13, "Add Test");
 
     int index;
     String menuName;

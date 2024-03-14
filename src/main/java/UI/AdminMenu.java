@@ -17,7 +17,8 @@ public class AdminMenu implements UIInterface {
                 System.out.println("5. Get Student information by Id");
                 System.out.println("6. Set student on course");
                 System.out.println("7. Add new course or new info about course");
-                System.out.println("8. Exit");
+                System.out.println("8. Add new test");
+                System.out.println("9. Exit");
                 int index = UserInput.insertInt("Insert menu number from above");
                 switch (index) {
                     case 1:
@@ -33,6 +34,8 @@ public class AdminMenu implements UIInterface {
                     case 6:
                         return MenuIndexes.I_6.getIndex();
                     case 7:
+                        return MenuIndexes.I_12.getIndex();
+                    case 8:
                         return MenuIndexes.I_13.getIndex();
                     default:
                         return 0;

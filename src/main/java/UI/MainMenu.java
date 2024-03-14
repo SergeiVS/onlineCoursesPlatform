@@ -7,6 +7,10 @@ public class MainMenu implements UIInterface {
     @Override
     public int execute() {
         printActionName();
+
+        try {
+
+
         while (true) {
             System.out.println("1. Log In");
             System.out.println("2. Register");
@@ -27,7 +31,10 @@ public class MainMenu implements UIInterface {
             }
 
         }
-
+    }catch (RuntimeException e){
+            e.printStackTrace();
+            return 0;
+        }
     }
 
     @Override
