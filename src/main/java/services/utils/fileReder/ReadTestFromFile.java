@@ -1,4 +1,4 @@
-package main.java.services.utils.fileReder;
+package services.utils.fileReder;
 
 import core.entity.Test;
 

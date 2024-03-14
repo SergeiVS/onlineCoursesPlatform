@@ -1,7 +1,6 @@
 package org.onlinecoursesplatform;
 
 import UI.*;
-import main.java.services.utils.fileReder.ReadTestFromFile;
 import repository.*;
 import services.TestRepositoryService;
 import services.curseServices.AddCourseService;
@@ -16,6 +15,7 @@ import services.utils.fileReder.ReadCourseFromFile;
 import services.utils.fileReder.ReadPassesFromFile;
 import services.utils.fileReder.ReadPersonDatabaseFromFile;
 
+import services.utils.fileReder.ReadTestFromFile;
 import services.utils.fileWriter.AddPasswordToIntoFile;
 
 import java.io.IOException;
