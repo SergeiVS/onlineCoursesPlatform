@@ -1,4 +1,4 @@
-package services.utils.fileReder;
+package main.java.services.utils.fileReder;
 
 import core.entity.Test;
 
@@ -6,9 +6,10 @@ import core.entity.Test;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 
 // считывает из файла данные теста для проверки знаний пользователя.
-public class ReadTestFromFile implements ReadFromFile<Test> {
+public class ReadTestFromFile implements services.utils.fileReder.ReadFromFile<Test> {
 
     // Метод возвращает готовый объект класса Test. На вход получает путь к нужному файлу и ид курса для проверки
     @Override
@@ -21,7 +22,8 @@ public class ReadTestFromFile implements ReadFromFile<Test> {
         Integer readCourseId = 0;
         String testName = null;
         boolean isActive = false;
-        final var readTest = new Test(readCourseId, testName, isActive);
+        List<Test.Question> questions;
+        Test readTest;
 
         try {
 
@@ -39,6 +41,8 @@ public class ReadTestFromFile implements ReadFromFile<Test> {
                 if (readLine.toLowerCase().contains("is_active")) {
                     isActive = Boolean.parseBoolean(getString(readLine));
                 }
+                readTest = new Test(readCourseId,testName,isActive);
+
                 if (readLine.contains("##")) {
                     Test.Question question = getQuestion(readLine, reader);
                     readTest.addQuestion(question);
@@ -56,7 +60,7 @@ public class ReadTestFromFile implements ReadFromFile<Test> {
         } finally {
             reader.close();
         }
-        return readTest;
+        return readTest = null;
     }
 
 

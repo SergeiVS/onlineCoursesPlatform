@@ -28,6 +28,9 @@ public class LogInMenu implements UIInterface {
 
         printActionName();
 
+        try {
+
+
         String email = UserInput.insertString("Please insert login/email");
         Integer passHash = UserInput.insertString("Please insert your password").hashCode();
         responsePerson = service.logIn(new Request<>(new LogInDto(email, passHash)));
@@ -49,6 +52,12 @@ public class LogInMenu implements UIInterface {
             PrintErrors.printErrorsList(responsePerson.getErrors());
             return 0;
         }
+        }catch (RuntimeException e){
+
+            e.printStackTrace();
+            return 0;
+        }
+
         return 0;
     }
 

@@ -21,6 +21,9 @@ public class GetCourseInformationMenu implements UIInterface{
  @Override
     public int execute() {
   printActionName();
+
+  try {
+
   int courseId = UserInput.insertInt("Please insert course Id");
 
 
@@ -29,13 +32,16 @@ public class GetCourseInformationMenu implements UIInterface{
 
    if (course.isPresent()){
        PrintCourseInformation.printCourseInfo(course.get());
-       return 5;
+       return 0;
    }else {
        System.out.println("Error! course not found");
        PrintErrors.printErrorsList(courseResponse.getErrors());
-       return 5;
+       return 0;
    }
-
+ }catch (RuntimeException e){
+      e.printStackTrace();
+      return 0;
+  }
   }
 
 

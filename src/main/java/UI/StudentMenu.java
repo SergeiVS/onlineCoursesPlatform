@@ -14,8 +14,8 @@ public class StudentMenu implements UIInterface {
             System.out.println("1. Register on course");
             System.out.println("2. Testing");
             System.out.println("3. Get Course information");
-            System.out.println("3. Get grades");
-            System.out.println("4. Exit");
+            System.out.println("4. Get grades");
+            System.out.println("5. Exit");
             int index = UserInput.insertInt("Insert menu number from above");
             switch (index) {
                 case 1:
@@ -23,6 +23,8 @@ public class StudentMenu implements UIInterface {
                 case 2:
                     return MenuIndexes.I_7.getIndex();
                 case 3:
+                    return MenuIndexes.I_3.getIndex();
+                case 4:
                     return MenuIndexes.I_8.getIndex();
                 default:
                     return 0;

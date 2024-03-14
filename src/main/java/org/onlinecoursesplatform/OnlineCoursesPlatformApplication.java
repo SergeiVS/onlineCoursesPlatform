@@ -1,6 +1,7 @@
 package org.onlinecoursesplatform;
 
 import UI.*;
+import main.java.services.utils.fileReder.ReadTestFromFile;
 import repository.*;
 import services.TestRepositoryService;
 import services.curseServices.AddCourseService;
@@ -14,7 +15,7 @@ import services.testing.TestResult;
 import services.utils.fileReder.ReadCourseFromFile;
 import services.utils.fileReder.ReadPassesFromFile;
 import services.utils.fileReder.ReadPersonDatabaseFromFile;
-import services.utils.fileReder.ReadTestFromFile;
+
 import services.utils.fileWriter.AddPasswordToIntoFile;
 
 import java.io.IOException;
@@ -32,10 +33,10 @@ public class OnlineCoursesPlatformApplication {
         ReadTestFromFile testFromFile = new ReadTestFromFile();
 
         AddPasswordToIntoFile addPasswordToIntoFile = new AddPasswordToIntoFile();
-        PersonRepository personRepository = new PersonRepository(personDatabaseFromFile.readFromFile("src/main/resources/persons/PersonsDatabase.txt"));
-        CoursesRepository coursesRepository = new CoursesRepository();
-        Passwords passwords = new Passwords(readPassesFromFile.readFromFile("src/main/resources/PassesDatabase"));
-        TestsRepository testsRepository = new TestsRepository();
+        repository.PersonRepository personRepository = new repository.PersonRepository(personDatabaseFromFile.readFromFile("src/main/resources/persons/PersonsDatabase.txt"));
+        repository.CoursesRepository coursesRepository = new repository.CoursesRepository();
+        repository.Passwords passwords = new repository.Passwords(readPassesFromFile.readFromFile("src/main/resources/PassesDatabase"));
+        repository.TestsRepository testsRepository = new repository.TestsRepository();
         Grades gradesRepository = new Grades();
 
         LogInService logInService = new LogInService(personRepository, passwords);

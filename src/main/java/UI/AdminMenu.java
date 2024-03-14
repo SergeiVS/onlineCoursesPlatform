@@ -9,6 +9,8 @@ public class AdminMenu implements UIInterface {
     @Override
     public int execute() {
             printActionName();
+
+            try {
             while (true) {
                 System.out.println("1. Get all persons list");
                 System.out.println("2. Get student grades");
@@ -40,6 +42,11 @@ public class AdminMenu implements UIInterface {
                     default:
                         return 0;
                 }
+            }
+            }catch (RuntimeException e){
+
+                e.printStackTrace();
+                return 5;
             }
     }
 

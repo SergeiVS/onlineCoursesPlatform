@@ -6,7 +6,7 @@ import core.dto.requests.Request;
 import core.dto.responses.Response;
 import core.entity.Test;
 import repository.TestsRepository;
-import services.utils.fileReder.ReadTestFromFile;
+
 import services.validation.StringRequestValidation;
 
 import java.io.File;
@@ -18,9 +18,9 @@ import java.util.Optional;
 public class TestRepositoryService {
 
     private final TestsRepository repository;
-    private final ReadTestFromFile testFromFile;
+    private final main.java.services.utils.fileReder.ReadTestFromFile testFromFile;
 
-    public TestRepositoryService(TestsRepository repository, ReadTestFromFile testFromFile) {
+    public TestRepositoryService(TestsRepository repository, main.java.services.utils.fileReder.ReadTestFromFile testFromFile) {
         this.repository = repository;
         this.testFromFile = testFromFile;
     }

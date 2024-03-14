@@ -32,9 +32,10 @@ public class TestForPassing {
 
         List<ErrorsDto> errors = new ArrayList<>();
         List<ResponseTestForPassing.ResponseQuestion> questions = new ArrayList<>();
-        String nextTestName = "name";
+        String nextTestName = null;
         try {
             ValidationInterface<Request<Integer>> intValid = new IntegerRequestValidation();
+
             boolean isValid = intValid.validate(personIdRequest, errors);
             if (!isValid) {
                 errors.add(new ErrorsDto(ErrorCoding.E_404, "Database did not found"));

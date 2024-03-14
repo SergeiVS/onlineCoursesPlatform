@@ -32,12 +32,15 @@ public class TestingMenu implements UIInterface{
         printActionName();
 
         int personId = UserInput.insertInt("Please insert your personal id");
+
         Response<ResponseTestForPassing> testForPassing = testResponse.initiateTest(new Request<>(personId));
         Optional<ResponseTestForPassing> test = Optional.ofNullable(testForPassing.getResponse());
         List<Character> answers = new ArrayList<>();
 
         if (test.isPresent()){
+
             System.out.println(test.get().getTestName());
+
             List<ResponseTestForPassing.ResponseQuestion> questions = test.get().getQuestions();
             for (ResponseTestForPassing.ResponseQuestion question : questions){
                 PrintQuestion.printQuestion(question);

@@ -21,6 +21,9 @@ public class AddChangeCourseMenu implements UIInterface{
     @Override
     public int execute() {
         printActionName();
+        try {
+
+
         int courseId = UserInput.insertInt("Insert course id for change, new course insert 0");
         String courseName = UserInput.insertString("Please insert course name");
         boolean isActive = UserInput.insertBoolean("Please mark is course active");
@@ -37,7 +40,11 @@ public class AddChangeCourseMenu implements UIInterface{
             PrintErrors.printErrorsList(courseResponse.getErrors());
             return 5;
         }
+    }catch (RuntimeException e){
 
+            e.printStackTrace();
+            return 5;
+        }
     }
 
     @Override
