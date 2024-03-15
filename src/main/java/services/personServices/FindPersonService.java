@@ -32,7 +32,7 @@ public class FindPersonService {
             List<Person> foundPersons = personRepository.findAll();
 
             personsForReturn = foundPersons.stream()
-                    .map(Converters::personToResponseConverter)
+                    .map(person -> Converters.personToResponseConverter(person, person.getPersonId()))
                     .collect(Collectors.toList());
 
             if (personsForReturn.isEmpty()) {
@@ -58,7 +58,7 @@ public class FindPersonService {
 
             if (isValid) {
                 foundPerson = personRepository.findById(personId.getRequest());
-                personForReturn = Converters.personToResponseConverter(foundPerson);
+                personForReturn = Converters.personToResponseConverter(foundPerson, personId.getRequest());
             }
 
             if (foundPerson == null) {
@@ -91,7 +91,7 @@ public class FindPersonService {
             if (!foundPersons.isEmpty()) {
                 personsForReturn = foundPersons.stream()
                         .filter(person -> person.getLastName().equals(lastName.getRequest()))
-                        .map(Converters::personToResponseConverter)
+                        .map(person -> Converters.personToResponseConverter(person, person.getPersonId()))
                         .collect(Collectors.toList());
             }
             if (personsForReturn.isEmpty()) {

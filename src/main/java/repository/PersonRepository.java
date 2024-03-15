@@ -72,7 +72,7 @@ public class PersonRepository implements RepositoryInterface<Person> {
 // Если такого нет, то создаётся новый объект Персон с полученными данными. Возвращается ИД персоны
     public Integer add(Person person) {
 
-        int personId = (person.getPersonId() == 0) ? idGenerate() : person.getPersonId();
+        int personId = (person.getPersonId() != 0) ? person.getPersonId() : idGenerate() ;
         String fName = person.getFirstName();
         String lName = person.getLastName();
         String email = person.getEmail();
@@ -91,7 +91,7 @@ public class PersonRepository implements RepositoryInterface<Person> {
     }
 
     private int idGenerate() {
-        return idGenerator++;
+        return ++idGenerator;
     }
 
 }

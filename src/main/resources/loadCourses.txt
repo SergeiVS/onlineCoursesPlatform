@@ -1,0 +1,2 @@
+src/main/resources/courses/course1/Course1.txt
+src/main/resources/courses/course2/Course2.txt

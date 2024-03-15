@@ -1,26 +1,17 @@
 package core.entity;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Test {
 
     private Integer courseId;
     private String testName;
     private boolean isActive;
-    private List<Question> questions;
-    private Map<Integer, String> correctAnswers;
+    private List<Question> questions = new ArrayList<>();
+    private final Map<Integer, Character> correctAnswers = new HashMap<>();
 
     // Конструктор
-    public Test(Integer courseId, String testName, boolean isActive) {
-        this.courseId = courseId;
-        this.testName = testName;
-        this.isActive = isActive;
-        this.questions = new ArrayList<>();
-        this.correctAnswers = new HashMap<>();
-    }
+
 
     // Метод добавления вопроса
     public void addQuestion(Question question) {
@@ -44,7 +35,19 @@ public class Test {
         return questions;
     }
 
-    public Map<Integer, String> getCorrectAnswers() { return correctAnswers; }
+    public Map<Integer, Character> getCorrectAnswers() { return correctAnswers; }
+
+    public void setCourseId(Integer courseId) {
+        this.courseId = courseId;
+    }
+
+    public void setTestName(String testName) {
+        this.testName = testName;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
 
     @Override
     public String toString() {
@@ -93,6 +96,18 @@ public class Test {
 
         public String getProofValue() {
             return proofValue;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (!(o instanceof Question question)) return false;
+            return Objects.equals(getAnswerA(), question.getAnswerA()) && Objects.equals(getAnswerB(), question.getAnswerB()) && Objects.equals(getAnswerC(), question.getAnswerC()) && Objects.equals(getProofValue(), question.getProofValue());
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(getAnswerA(), getAnswerB(), getAnswerC(), getProofValue());
         }
 
         @Override

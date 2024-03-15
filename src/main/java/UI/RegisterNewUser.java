@@ -23,7 +23,12 @@ public class RegisterNewUser implements UIInterface {
     @Override
     public int execute() {
         printActionName();
+
         System.out.println("We are glad you chose our course platform");
+
+        try {
+
+
         String fName = UserInput.insertString("Insert your first name: ");
         String lName = UserInput.insertString("Insert your last name:");
         String email = UserInput.insertString("Insert your email:");
@@ -43,7 +48,11 @@ public class RegisterNewUser implements UIInterface {
             PrintErrors.printErrorsList(responsePerson.getErrors());
             return 0;
         }
+    }catch (RuntimeException e){
 
+            e.printStackTrace();
+            return 0;
+        }
 
     }
 

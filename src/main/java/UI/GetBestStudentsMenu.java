@@ -1,6 +1,6 @@
 package UI;
 
-public class GetGradesMenu implements UIInterface {
+public class GetBestStudentsMenu implements UIInterface{
     @Override
     public int execute() {
         return 0;

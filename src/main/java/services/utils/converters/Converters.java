@@ -10,9 +10,9 @@ import java.util.Map;
 
 public class Converters {
     // Конвертирует данные пользователя в формат ответа на запрос
-    public static ResponsePerson personToResponseConverter(Person foundPerson) throws RuntimeException {
+    public static ResponsePerson personToResponseConverter(Person foundPerson, int personId) throws RuntimeException {
 
-        var id = foundPerson.getPersonId();
+        var id = personId;
         var fName = foundPerson.getFirstName();
         var lName = foundPerson.getLastName();
         var courseId = foundPerson.getCourseId();

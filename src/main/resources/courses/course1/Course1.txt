@@ -1,6 +1,3 @@
 course_id : 1
-
 course_name : course1
-
-здесь могло бы быть описание этого курса
-если бы я его написал....
+Introduction to Java is a comprehensive course designed for beginners to learn the basics of Java programming.

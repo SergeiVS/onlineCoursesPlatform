@@ -43,7 +43,7 @@ public class AddPersonService {
         List<ErrorsDto> errors = new ArrayList<>();
         ResponsePerson person = null;
         boolean isValid = false;
-        int personId;
+        int personId = 0;
 
         try {
             var request = dtoRequest.getRequest();
@@ -62,20 +62,13 @@ public class AddPersonService {
             }
             // Если входные данные валидны создаётся новый пользователь с полными или неполными данными.
             if (isValid) {
-                if (courseId > 0) {
 
                     newPerson = new Person(0, fName, lName, email, courseId, "is_student");
                     personId = personRepository.add(newPerson);
                     passwords.getPasswords().put(email.hashCode(), passHash);
                     errors.add(new ErrorsDto(ErrorCoding.E_201, "Person added"));
-                    person = Converters.personToResponseConverter(newPerson);
-                } else {
-                    newPerson = new Person(0, fName, lName, email);
-                    personId = personRepository.add(newPerson);
-                    passwords.getPasswords().put(email.hashCode(), passHash);
-                    errors.add(new ErrorsDto(ErrorCoding.E_201, "Person added without association with any course"));
-                    person = Converters.personToResponseConverter(newPerson);
-                }
+                    person = Converters.personToResponseConverter(newPerson, personId);
+
                 //если данные не прошли проверку то добавление нового пользователя не происходит.
             } else {
                 return new Response<ResponsePerson>(null, errors);
