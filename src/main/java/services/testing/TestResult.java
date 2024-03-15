@@ -51,7 +51,6 @@ public class TestResult {
                 errors.add(new ErrorsDto(ErrorCoding.E_404, "Database did not found"));
             } else {
 
-                // Получаем courseId из запроса
                 courseId = persons.findById(personId).getCourseId();
 
                 // Получаем список ответов пользователя

@@ -45,9 +45,19 @@ public class TestForPassing {
                 // находим через репозиторий персон ид курса
                 Integer searchedCourseId = persons.findById(personId).getCourseId();
                 List<Integer> personGrades = grades.findGradesById(searchedCourseId, personId);
-                Integer lastGrade = personGrades.size();
+                Integer lastGrade;
+                if (personGrades.isEmpty()) {
+                    lastGrade = 0;
+                } else {
+                    lastGrade = personGrades.size();
+                }
                 List<Test> testsOfCourse = tests.findTestsByCourseId(searchedCourseId);
-                Test nextTest = testsOfCourse.get(lastGrade);
+                Test nextTest;
+                if (lastGrade == 0) {
+                    nextTest = testsOfCourse.get(lastGrade);
+                } else {
+                    nextTest = testsOfCourse.get(lastGrade + 1);
+                }
                 nextTestName = nextTest.getTestName();
                 // Создаем список для хранения вопросов для следующего теста
                 questions = getQuestions(nextTest);
