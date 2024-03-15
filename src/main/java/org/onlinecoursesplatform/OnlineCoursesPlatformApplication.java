@@ -4,6 +4,7 @@ import UI.*;
 import repository.*;
 import services.TestLoader;
 import services.TestRepositoryService;
+import services.analytics.GetStudentGrades;
 import services.curseServices.AddCourseService;
 import services.curseServices.FindCourseServices;
 import services.personServices.AddPersonService;
@@ -50,6 +51,7 @@ public class OnlineCoursesPlatformApplication {
         FindPersonService findPersonService = new FindPersonService(personRepository);
         TestResult testResult = new TestResult(personRepository,gradesRepository, testsRepository);
         TestLoader testLoader = new TestLoader(testRepositoryService);
+        GetStudentGrades getStudentGrades = new GetStudentGrades(gradesRepository, personRepository);
 
         MainMenu mainMenu = new MainMenu();
         LogInMenu logInMenu = new LogInMenu(logInService);
@@ -61,7 +63,7 @@ public class OnlineCoursesPlatformApplication {
         TestingMenu testingMenu = new TestingMenu(testForPassing, testResult);
         AddChangeCourseMenu changeCourseMenu = new AddChangeCourseMenu(addCourseService);
         AddTestMenu addTestMenu = new AddTestMenu(testRepositoryService);
-        GetGradesMenu getGradesMenu = new GetGradesMenu();
+        GetGradesMenu getGradesMenu = new GetGradesMenu(getStudentGrades);
         FindPersonByIdMenu findPersonByIdMenu = new FindPersonByIdMenu();
         GetAllPersonsMenu getAllPersonsMenu = new GetAllPersonsMenu(findPersonService);
         GetBestStudentsMenu getBestStudentsMenu = new GetBestStudentsMenu();

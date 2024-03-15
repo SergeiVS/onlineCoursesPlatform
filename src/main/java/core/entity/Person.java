@@ -4,9 +4,6 @@ import java.util.Objects;
 
 public class Person {
     private Integer personId;
-
-
-
     private String firstName;
     private String lastName;
     private String email;

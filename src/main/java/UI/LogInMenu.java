@@ -37,7 +37,7 @@ public class LogInMenu implements UIInterface {
         Optional<ResponsePerson> person = Optional.ofNullable(responsePerson.getResponse());
 
         if (person.isPresent()) {
-            System.out.println(person.get().getFirstName() + " WELLCOME!\n ");
+            System.out.println(person.get().getFirstName() + " WELLCOME!");
             PrintUser.userPrintOut(person.get());
 
             if (Objects.equals(person.get().getAccessType(), "is_student")) {
