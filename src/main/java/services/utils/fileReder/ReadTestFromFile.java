@@ -7,7 +7,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 // считывает из файла данные теста для проверки знаний пользователя.
 public class ReadTestFromFile implements services.utils.fileReder.ReadFromFile<Test> {
@@ -22,8 +24,9 @@ public class ReadTestFromFile implements services.utils.fileReder.ReadFromFile<T
         Integer readCourseId = 0;
         String testName = null;
         boolean isActive = false;
-
-        Test readTest = new Test();
+        Map<Integer, Character> correctAnswers = new HashMap<>();
+        Test readTest = new Test(readCourseId, testName, isActive);
+        int questionCounter = 0;
 
         try {
 
@@ -41,8 +44,10 @@ public class ReadTestFromFile implements services.utils.fileReder.ReadFromFile<T
 
 
                 if (readLine.contains("##")) {
-                    Test.Question question = getQuestion(readLine, reader);
+                    questionCounter++;
+                    Test.Question question = getQuestion(readLine, reader, questionCounter);
                     readTest.addQuestion(question);
+                    readTest.getCorrectAnswers().put(questionCounter, question.getProofValue());
 
                 }
             }
@@ -63,7 +68,7 @@ public class ReadTestFromFile implements services.utils.fileReder.ReadFromFile<T
         return readLine.split("=")[1].trim();
     }
 
-    private static Test.Question getQuestion(String readLine, BufferedReader reader) throws IOException {
+    private static Test.Question getQuestion(String readLine, BufferedReader reader, int questionCounter) throws IOException {
 
 
         readLine = reader.readLine();
@@ -71,7 +76,7 @@ public class ReadTestFromFile implements services.utils.fileReder.ReadFromFile<T
         String answerA = null;
         String answerB = null;
         String answerC = null;
-        String proofValue = null;
+        Character proofValue = null;
 
         question = getStringText(readLine, "question");
         readLine = reader.readLine();
@@ -81,8 +86,8 @@ public class ReadTestFromFile implements services.utils.fileReder.ReadFromFile<T
         readLine = reader.readLine();
         answerC = getStringText(readLine, "answer_c");
         readLine = reader.readLine();
-        proofValue = getStringText(readLine, "proof_value");
-        readLine = reader.readLine();
+        proofValue = getStringText(readLine, "proof_value").charAt(0);
+
 
         return new Test.Question(question, answerA, answerB, answerC, proofValue);
     }
