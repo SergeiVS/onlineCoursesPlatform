@@ -12,29 +12,32 @@ import java.util.Comparator;
 
 public class Top10BestStudents {
     private final PersonRepository personRepository;
-    private final GradesRepositoryInterface gradesRepositoryInterface;
-    private final CoursesRepository coursesRepository;
-    public Top10BestStudents(PersonRepository personRepository, GradesRepositoryInterface gradesRepositoryInterface, CoursesRepository coursesRepository){
+
+    public Top10BestStudents(PersonRepository personRepository, Grades gradesRepository, CoursesRepository coursesRepository) {
         this.personRepository = personRepository;
-        this.gradesRepositoryInterface = gradesRepositoryInterface;
+        this.gradesRepository = gradesRepository;
         this.coursesRepository = coursesRepository;
     }
+
+    private final Grades gradesRepository;
+    private final CoursesRepository coursesRepository;
+
     public List<Person> findTop10BestStudents() {
-        List<Person> allStudents = personRepository.getAllStudents();
+        List<Person> allStudents = personRepository.findAll();
         List<Double> averageGrades = new ArrayList<>();
         for (Person person : allStudents) {
-            List<Integer> studentGrades = gradesRepositoryInterface.getGradesByPersontId(person.getPersonId());
-            double averageGrade = calculateAverageGrade(person-Grades);
+            List<Integer> studentGrades = gradesRepository.findGradesById(person.getCourseId(), person.getPersonId());
+            double averageGrade = calculateAverageGrade(person);
             averageGrades.add(averageGrade);
         }
     }
     public List<Person> findTop10BestStudents(List<Person> persons, int topCount) {
         persons.sort(Comparator.comparingDouble(this::calculateAverageGrade).reversed());
-        return persons.subList(0, Math.min(topCount, persons.size()));
+        return persons.stream().limit(topCount).toList();
     }
 
     private double calculateAverageGrade(Person person) {
-        List<Integer> grades = person.getGrades();
+        List<Integer> grades = gradesRepository.findGradesById(person.getCourseId(), person.getPersonId());
         int sum = 0;
         for (int grade : grades) {
             sum += grade;
