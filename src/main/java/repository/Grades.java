@@ -22,7 +22,7 @@ public class Grades implements GradesRepositoryInterface {
     }
 
     @Override
-    public Map<Object, Object> addStudentGrade(Integer courseId, Integer personId, Integer grade) {
+    public void addStudentGrade(Integer courseId, Integer personId, Integer grade) {
 
         if (grades.containsKey(courseId)) {
             Map<Integer, List<Integer>> courseGrades = grades.get(courseId);
@@ -36,8 +36,6 @@ public class Grades implements GradesRepositoryInterface {
                 courseGrades.put(personId, studentGrades);
             }
         }
-        return Map.of();
-
 
     }
     public List<Integer> findGradesById(Integer courseId, Integer personId) {
